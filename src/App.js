@@ -15,8 +15,13 @@ class App extends Component {
               <span>SIMON</span>
             </div>
             <div className="game-controls">
+              <div className="game-score">
+                00
+              </div>
               <div className="game-light"></div>
-              <div className="game-switch"></div>
+              <div className="game-switch">
+                <div className="game-slider"></div>
+              </div>
               <div className="game-reset"></div>
             </div>
           </div>
