@@ -16,7 +16,9 @@ class App extends Component {
             </div>
             <div className="game-controls">
               <div className="game-score">
-                00
+                <span>
+                  000
+                </span>
               </div>
               <div className="game-light"></div>
               <div className="game-switch">

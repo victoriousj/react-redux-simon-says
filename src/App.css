@@ -23,8 +23,8 @@
     box-sizing: border-box;
     border: 1px solid red;
     margin: 1vh;
-    height: 33.4vh;
-    width: 33.4vh;
+    height: 33vh;
+    width: 33vh;
     display: inline-block;
 }
 
@@ -82,7 +82,7 @@
     position: absolute;
     left: 40%;
     top: 60%;
-    border-radius: 5%;
+    border-radius: 0%;
 }
 .game-controls {
     border-top: 1px solid red;
@@ -105,30 +105,30 @@
 .game-name {
     height: 50%;
     width: 100%;
-    text-align: center;
+    display:flex;
+    justify-content: center;
+    align-items: center;
     font-size: 8vh;
 }
 
 .game-name span {
+    margin-top: 2vh;
     color: white;
-    font-family: monospace;
+    font-family: 'Lilita One', monospace;
     text-transform: uppercase;
 	text-shadow:
 		-1px -1px 0 red,
 		1px -1px 0 red,
 		-1px 1px 0 red,
         1px 1px 0 red;
-    position: absolute;
-    top: 30%;
-    left: 20%;
 }
 
 .game-slider {
-    height: 95%;
-    width: 47.5%;
+    height: 90%;
+    width: 45%;
     border: 1px solid red;
     position: absolute;
-    top: 2.5%;
+    top: 5%;
     left: 2.5%;
 }
 
@@ -140,17 +140,42 @@
     position: absolute;
     top: 1vh;
     left: 35%;
-    font-family: Orbitron;
+    font-family: Digital;
     text-shadow:
     -1px -1px 0 red,
     1px -1px 0 red,
     -1px 1px 0 red,
     1px 1px 0 red;
     color: white;
-    font-size: 5vh
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.game-score span {
+    height: 90%;
+    width: 90%;
+    background-color: rgba(255, 0, 0, 10%);
+    /* color to use when we start filling in the colors*/
+    /* background-color: rgba(#430710); */
+    padding: .5vh;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 6vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5%;
+    box-shadow: inset -1px -1px 0 #f00;
+
 }
 
 @font-face {
-    font-family: Orbitron;
-    src: url(./Orbitron-Regular.ttf);
+    font-family: Digital;
+    src: url(./digital-subset.ttf);
+}
+
+@font-face {
+    font-family: 'Lilita One';
+    src: url(./LilitaOne-Regular.ttf);
 }
