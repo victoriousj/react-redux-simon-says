@@ -172,10 +172,10 @@
 
 @font-face {
     font-family: Digital;
-    src: url(./digital-subset.ttf);
+    src: url(./fonts/digital-subset.ttf);
 }
 
 @font-face {
     font-family: 'Lilita One';
-    src: url(./LilitaOne-Regular.ttf);
+    src: url(./fonts/LilitaOne-Regular.ttf);
 }

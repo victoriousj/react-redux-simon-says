@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
+
 import './App.css';
+import Button from './Components/Button';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <div className="container">
-          <div className="button"></div>
-          <div className="button"></div>
-          <div className="button"></div>
-          <div className="button"></div>
+          <Button />
+          <Button />
+          <Button />
+          <Button />
           <div className="controls">
             <div className="game-name">
               <span>SIMON</span>
