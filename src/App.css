@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+}
+
+.container {
+    border: 1px solid red;
+    position: relative;
+    margin: 5rem auto;
+    height: 50rem;
+    width: 50rem;
+    padding: 20px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.button {
+    border: 1px solid red;
+    margin: 1%;
+    height: 48%;
+    width: 48%;
+    display: inline-block;
+}
+
+.button:nth-of-type(1){
+    border-radius: 500px 0 0 0;
+}
+.button:hover {
+    background-color: red;
+}
+.button:nth-of-type(2){
+    border-radius: 0 500px 0 0;
+}
+.button:nth-of-type(4){
+    border-radius: 0 0 500px 0;
+}
+.button:nth-of-type(3){
+    border-radius: 0 0 0 500px;
+}
+
+.controls {
+    border: 1px solid red;
+    height: 50%;
+    width: 50%;
+    position: absolute;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    margin: -25% 0 0 -25%;
+    background-color: white;
+    z-index: 1;
+}
+
+.controls * { 
+    position: relative;
+    display: inline-block;
+}
+
+.game-light {
+    border: 1px solid red;
+    height: 30%;
+    width: 15%;
+    border-radius: 50%;
+    position: absolute;
+    left: 70%;
+    top: 40%;
+}
+
+.game-switch {
+    border: 1px solid red;
+    height: 30%;
+    width: 30%;
+    position: absolute;
+    left: 35%;
+    top: 40%;
+}
+.game-controls {
+    border-top: 1px solid red;
+    height:50%;
+    width: 100%;
+    text-align: center;
+    border-radius: 0 0 500px 500px;
+}
+
+.game-reset {
+    border: 1px solid red;
+    height: 30%;
+    width: 15%;
+    border-radius: 50%;
+    position: absolute;
+    left: 15%;
+    top: 40%;
+}
+
+.game-name {
+    height: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 8em;
+}
+
+.game-name span {
+    color: white;
+    font-family: monospace;
+    text-transform: uppercase;
+	text-shadow:
+		-1px -1px 0 red,
+		1px -1px 0 red,
+		-1px 1px 0 red,
+		1px 1px 0 red;
+}
