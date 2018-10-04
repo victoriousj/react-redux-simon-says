@@ -12,7 +12,7 @@ class Controls extends Component {
                     <span>simon</span>
                 </div>
                 <div className="game-controls">
-                    <Score />
+                    <Score score={this.props.score} />
                     <ControlButtons />
                 </div>
             </div>

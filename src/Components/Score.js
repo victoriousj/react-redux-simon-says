@@ -6,7 +6,7 @@ class Score extends Component {
         return (                    
             <div className="game-score">
                 <span>
-                    000
+                    {this.props.score}
                 </span>
             </div>
         );

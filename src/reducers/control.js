@@ -3,11 +3,9 @@ import * as ControlActionTypes from '../actiontypes/control';
 const initialState = {
     highScore: "000",
 
-    currentScore: "000",
+    score: "000",
 
     isPlaying: false,
-
-    startGame: function() {},
 
     buttonColors: [[
       "#e74c3c",
@@ -44,9 +42,11 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
+            let scheme = state.currentColorScheme === 0 ? 1 : 0;
+            console.log(scheme);
             return {
                 ...state,
-                currentColorScheme: action.colorSchemeId
+                currentColorScheme: scheme
             }
         }
 
