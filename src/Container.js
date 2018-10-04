@@ -27,31 +27,38 @@ class Container extends Component {
       "#f00",
       "#0ff"
     ]],
-    currentColorScheme: function (index = 0) {
-      return this.buttonColors[index];
-    }
+    colorScheme: 0,
+  };
+
+  changeColorScheme = () => {
+    let index = this.state.colorScheme === 0 ? 1 : 0;
+    this.setState({colorScheme: index})
   };
 
   render() {
-    const { dispatch } = this.props;
-    const buttonComponents = this.state.currentColorScheme().map((buttonColor, index) => 
+    const { dispatch, isPlaying, highScore, currentColorScheme, currentScore, buttonColors } = this.props;
+    const buttonComponents = this.state.buttonColors[this.state.colorScheme].map((buttonColor, index) => 
       <Button color={buttonColor} key={index} />);
 
     return (
       <div className="App">
+          <button type="button" onClick={this.changeColorScheme}>Change</button>
         <div className="container">
           {buttonComponents}}
           <Controls />
         </div>
       </div>
     );
-  }
+  };
 }
 
 const mapStateToProps = state => (
   {
-    control: state.control,
-    currentColorScheme: state.currentColorScheme,
+    isPlaying: state.isPlaying,
+    highScore: state.highScore,
+    currentScore: state.currentScore,
+    buttonColors: state.buttonColors,
+    currentColorScheme: state.currentColorScheme
   }
 );
 

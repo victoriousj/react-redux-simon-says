@@ -9,7 +9,8 @@ import './index.css';
 import ControlReducer from './reducers/control';
 
 const store = createStore(
-    ControlReducer
+    ControlReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
