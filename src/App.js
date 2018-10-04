@@ -1,34 +1,26 @@
 import React, { Component } from 'react';
 
 import './App.css';
+// import './App.2.css';
 import Button from './Components/Button';
+import Controls from './Components/Controls';
 
 class App extends Component {
+  state = {
+    buttonColors: [
+      "#e74c3c",
+      "#f1c40f",
+      "#2ecc71",
+      "#9b59b6"
+    ]
+  };
+
   render() {
     return (
       <div className="App">
         <div className="container">
-          <Button />
-          <Button />
-          <Button />
-          <Button />
-          <div className="controls">
-            <div className="game-name">
-              <span>SIMON</span>
-            </div>
-            <div className="game-controls">
-              <div className="game-score">
-                <span>
-                  000
-                </span>
-              </div>
-              <div className="game-light"></div>
-              <div className="game-switch">
-                <div className="game-slider"></div>
-              </div>
-              <div className="game-reset"></div>
-            </div>
-          </div>
+          {this.state.buttonColors.map(button => <Button />)}
+          <Controls />
         </div>
       </div>
     );
