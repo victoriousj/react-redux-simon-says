@@ -4,7 +4,7 @@ class Button extends Component {
 
     render() {
         return (
-            <div className="button"></div>
+            <div style={{backgroundColor: this.props.color}} className="button"></div>
         );
     }
 }
