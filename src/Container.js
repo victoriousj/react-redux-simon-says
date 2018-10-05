@@ -22,7 +22,7 @@ class Container extends Component {
 
     return (
       <div className="App">
-          <button type="button" onClick={changeColorScheme}>Change</button>
+          <button type="button" className="button-toggleScheme" onClick={changeColorScheme}></button>
         <div className="container">
           {buttonComponents}}
           <Controls 
