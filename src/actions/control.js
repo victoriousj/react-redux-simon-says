@@ -1,12 +1,12 @@
 import * as ControlActionTypes from '../actiontypes/control';
 
-export const gameStart = () => {
+export const startGame = () => {
     return {
         type: ControlActionTypes.GAME_START
     };
 };
 
-export const gameEnd = () => {
+export const endGame = () => {
     return {
         type: ControlActionTypes.GAME_END
     };

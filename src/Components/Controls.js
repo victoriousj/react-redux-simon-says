@@ -13,7 +13,7 @@ class Controls extends Component {
                 </div>
                 <div className="game-controls">
                     <Score score={this.props.score} />
-                    <ControlButtons />
+                    <ControlButtons isPlaying={this.props.isPlaying} startGame={this.props.startGame}/>
                 </div>
             </div>
         );

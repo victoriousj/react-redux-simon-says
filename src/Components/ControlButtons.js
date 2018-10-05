@@ -6,7 +6,7 @@ class ControlButtons extends Component {
         return (
             <div className="control-buttons">
                 <div className="game-light"></div>
-                    <div className="game-switch">
+                    <div className={`game-switch ${this.props.isPlaying ? 'game-on' : 'game-off'}`} onClick={() => this.props.startGame()}>
                         <div className="game-slider"></div>
                     </div>
                 <div className="game-reset"></div>

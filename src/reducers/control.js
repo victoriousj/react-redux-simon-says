@@ -1,11 +1,13 @@
 import * as ControlActionTypes from '../actiontypes/control';
 
 const initialState = {
+    score: "000",
+    
     highScore: "000",
 
-    score: "000",
-
     isPlaying: false,
+
+    currentPlaybackSequence: [],
 
     buttonColors: [[
       "#e74c3c",
@@ -30,7 +32,7 @@ export default function Control(state=initialState, action) {
         case ControlActionTypes.GAME_START: {
             return {
                 ...state,
-                isPlaying: true,
+                isPlaying: state.isPlaying === true ? false : true,
             }
         }
 
@@ -42,11 +44,9 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
-            let scheme = state.currentColorScheme === 0 ? 1 : 0;
-            console.log(scheme);
             return {
                 ...state,
-                currentColorScheme: scheme
+                currentColorScheme: state.currentColorScheme === 0 ? 1 : 0
             }
         }
 
