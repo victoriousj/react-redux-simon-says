@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 
 const Score = props => (
     <div className="game-score">
-        <span>
+        <span className={
+            props.isPlaying && props.score > 0
+            ? "game-light-on" 
+            : "game-light-off"} 
+        >
             {props.score}
         </span>
     </div>
 );
 
 Score.propTypes = {
-    score: PropTypes.string.isRequired
+    score: PropTypes.string.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
 }
 
 export default Score;

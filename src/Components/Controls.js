@@ -9,7 +9,10 @@ const Controls = props => (
             <span>simon</span>
         </div>
         <div className="game-controls">
-            <Score score={props.score} />
+            <Score 
+                score={props.score} 
+                isPlaying={props.isPlaying}
+                />
             <ControlButtons 
                 isPlaying={props.isPlaying} 
                 startGame={props.startGame}

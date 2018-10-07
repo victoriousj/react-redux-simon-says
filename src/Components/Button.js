@@ -6,6 +6,9 @@ const Button = props => (
         onClick={() => props.buttonPress(props.index)}
         style={{backgroundColor: props.color}} 
         className="button">
+        {/* <div className={props.isOverlay ? "button-overlay" : ""} > */}
+        <div className={"button-overlay"} >
+        </div>
     </div>
 );
 
