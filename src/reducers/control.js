@@ -7,22 +7,28 @@ const initialState = {
 
     isPlaying: false,
 
-    currentPlaybackSequence: [],
+    playbackSequence: [],
+    
+    playerPlaybackSequence: [],
 
-    buttonColors: [[
-      "#e74c3c",
-      "#f1c40f",
-      "#2ecc71",
-      "#9b59b6"
+    buttonColors: [
+        [
+            "#e74c3c",
+            "#f1c40f",
+            "#2ecc71",
+            "#9b59b6"
+        ], 
+        [
+            "#f0f",
+            "#fff",
+            "#f00",
+            "#0ff"
+        ]
     ],
-    [
-      "#f0f",
-      "#fff",
-      "#f00",
-      "#0ff"
-    ]],
 
     currentColorScheme: 0,
+
+    fetchRandomButtonIndex: () => Math.floor(Math.random() * 4), 
 };
 
 export default function Control(state=initialState, action) {
@@ -30,25 +36,48 @@ export default function Control(state=initialState, action) {
     switch(action.type) {
 
         case ControlActionTypes.GAME_START: {
-            return {
-                ...state,
-                isPlaying: state.isPlaying === true ? false : true,
-            };
+            if (!state.isPlaying) {
+                return {
+                    ...state,
+                    isPlaying: true,
+                    playbackSequence: []
+                }
+            }
+            else {
+                return Control(
+                    state, 
+                    {
+                        type: ControlActionTypes.GAME_END
+                    }
+                );
+            }
         };
 
         case ControlActionTypes.GAME_END: {
             return {
                 ...state,
+                score: "000",
                 isPlaying: false,
+                playerPlaybackSequence: []
             };
         };
 
         case ControlActionTypes.BUTTON_PRESS: {
-            // console.log(action.buttonIndex)
+            if (state.isPlaying) {
+                let currentplayerPlaybackSequence = state.playerPlaybackSequence;
+                currentplayerPlaybackSequence.push(action.buttonIndex);
+
+                let newScore = parseScore(state.score);
+                
+                return {
+                    ...state,
+                    score: newScore,
+                    playerPlaybackSequence: currentplayerPlaybackSequence
+                };
+            }
             return {
                 ...state,
-                currentPlaybackSequence: this.state.currentPlaybackSequence.push(action.buttonIndex)
-            };
+            }
         };
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
@@ -62,3 +91,19 @@ export default function Control(state=initialState, action) {
             return state;
     }
 }
+
+// Helpers
+
+const parseScore = (score) => {
+    let numScore = parseInt(score);
+    let parsedScore;
+
+    numScore++;
+    parsedScore = score < 9 
+    ? score = "00" + numScore            
+    : score = "0" + numScore;
+
+    return parsedScore;
+}
+
+// end Helpers

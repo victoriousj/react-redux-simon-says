@@ -13,7 +13,6 @@ export const endGame = () => {
 };
 
 export const buttonPress = buttonIndex => {
-    console.log('asdf');
     return {
         type: ControlActionTypes.BUTTON_PRESS,
         buttonIndex

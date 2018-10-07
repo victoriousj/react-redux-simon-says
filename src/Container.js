@@ -9,9 +9,6 @@ import Controls from './Components/Controls';
 import * as ControlActionCreators from './actions/control';
 
 class Container extends Component {
-  state = {
-    registerButtonClick: function() {},
-  };
 
   render() {
     const { dispatch, isPlaying, highScore, currentPlaybackSequence, currentColorScheme, score, buttonColors } = this.props;
@@ -29,7 +26,11 @@ class Container extends Component {
 
     return (
       <div className="App">
-          <button type="button" className="button-toggleScheme" onClick={changeColorScheme}></button>
+          <button 
+            type="button" 
+            className="button-toggleScheme" 
+            onClick={changeColorScheme}
+          />
         <div className="container">
           {buttonComponents}}
           <Controls 

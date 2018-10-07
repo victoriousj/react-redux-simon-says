@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Button = props => (
     <div 
-        onClick={() => console.log(props.index)}
+        onClick={() => props.buttonPress(props.index)}
         style={{backgroundColor: props.color}} 
         className="button">
     </div>
