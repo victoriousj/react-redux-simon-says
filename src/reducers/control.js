@@ -94,14 +94,15 @@ export default function Control(state=initialState, action) {
 
 // Helpers
 
-const parseScore = (score) => {
+const parseScore = score => {
     let numScore = parseInt(score);
     let parsedScore;
 
     numScore++;
+
     parsedScore = score < 9 
-    ? score = "00" + numScore            
-    : score = "0" + numScore;
+        ? score = "00" + numScore            
+        : score = "0" + numScore;
 
     return parsedScore;
 }

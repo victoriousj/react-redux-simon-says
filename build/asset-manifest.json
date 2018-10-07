@@ -1,14 +1,14 @@
 {
-  "main.css": "/static/css/main.d41e5fa1.chunk.css",
-  "main.js": "/static/js/main.dd509bec.chunk.js",
-  "main.js.map": "/static/js/main.dd509bec.chunk.js.map",
-  "static/js/1.c25e2bdf.chunk.js": "/static/js/1.c25e2bdf.chunk.js",
-  "static/js/1.c25e2bdf.chunk.js.map": "/static/js/1.c25e2bdf.chunk.js.map",
+  "main.css": "/static/css/main.96c62c9a.chunk.css",
+  "main.js": "/static/js/main.4e796c00.chunk.js",
+  "main.js.map": "/static/js/main.4e796c00.chunk.js.map",
+  "static/js/1.4f9a5fe9.chunk.js": "/static/js/1.4f9a5fe9.chunk.js",
+  "static/js/1.4f9a5fe9.chunk.js.map": "/static/js/1.4f9a5fe9.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/media/logo.svg": "/static/media/logo.5d5d9eef.svg",
-  "static/css/main.d41e5fa1.chunk.css.map": "/static/css/main.d41e5fa1.chunk.css.map",
+  "static/css/main.96c62c9a.chunk.css.map": "/static/css/main.96c62c9a.chunk.css.map",
+  "static/media/App.css": "/static/media/LilitaOne-Regular.0d4e1383.ttf",
   "index.html": "/index.html",
-  "precache-manifest.c6a3cf7bc0099105787cb3acaf012186.js": "/precache-manifest.c6a3cf7bc0099105787cb3acaf012186.js",
+  "precache-manifest.368764c4b4b3ee2864431629327c7adf.js": "/precache-manifest.368764c4b4b3ee2864431629327c7adf.js",
   "service-worker.js": "/service-worker.js"
 }
