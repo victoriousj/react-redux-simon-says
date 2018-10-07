@@ -16,6 +16,7 @@ const Controls = props => (
             <ControlButtons 
                 isPlaying={props.isPlaying} 
                 startGame={props.startGame}
+                changeColorScheme={props.changeColorScheme}
             />
         </div>
     </div>

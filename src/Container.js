@@ -26,16 +26,12 @@ class Container extends Component {
 
     return (
       <div className="App">
-          <button 
-            type="button" 
-            className="button-toggleScheme" 
-            onClick={changeColorScheme}
-          />
         <div className="container">
           {buttonComponents}}
           <Controls 
             score={score}
             startGame={startGame}
+            changeColorScheme={changeColorScheme}
             isPlaying={isPlaying}
           />
         </div>
