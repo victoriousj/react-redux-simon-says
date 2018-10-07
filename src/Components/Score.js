@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const Score = props => (
     <div className="game-score">
         <span className={
-            props.isPlaying && props.score > 0
+            props.isPlaying
             ? "game-light-on" 
             : "game-light-off"} 
         >
