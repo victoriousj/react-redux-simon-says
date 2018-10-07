@@ -33,22 +33,30 @@ export default function Control(state=initialState, action) {
             return {
                 ...state,
                 isPlaying: state.isPlaying === true ? false : true,
-            }
-        }
+            };
+        };
 
         case ControlActionTypes.GAME_END: {
             return {
                 ...state,
                 isPlaying: false,
-            }
-        }
+            };
+        };
+
+        case ControlActionTypes.BUTTON_PRESS: {
+            // console.log(action.buttonIndex)
+            return {
+                ...state,
+                currentPlaybackSequence: this.state.currentPlaybackSequence.push(action.buttonIndex)
+            };
+        };
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
             return {
                 ...state,
                 currentColorScheme: state.currentColorScheme === 0 ? 1 : 0
-            }
-        }
+            };
+        };
 
         default:
             return state;

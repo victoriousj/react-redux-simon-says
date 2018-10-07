@@ -12,9 +12,17 @@ export const endGame = () => {
     };
 };
 
+export const buttonPress = buttonIndex => {
+    console.log('asdf');
+    return {
+        type: ControlActionTypes.BUTTON_PRESS,
+        buttonIndex
+    };
+};
+
 export const changeColorScheme = colorSchemeId => {
     return {
         type: ControlActionTypes.GAME_CHANGE_COLOR_SCHEME,
         colorSchemeId
-    }
-}
+    };
+};

@@ -14,11 +14,18 @@ class Container extends Component {
   };
 
   render() {
-    const { dispatch, isPlaying, highScore, currentColorScheme, score, buttonColors } = this.props;
+    const { dispatch, isPlaying, highScore, currentPlaybackSequence, currentColorScheme, score, buttonColors } = this.props;
+
     const startGame = bindActionCreators(ControlActionCreators.startGame, dispatch);
+    const buttonPress = bindActionCreators(ControlActionCreators.buttonPress, dispatch);
     const changeColorScheme = bindActionCreators(ControlActionCreators.changeColorScheme, dispatch);
     const buttonComponents = buttonColors[currentColorScheme].map((buttonColor, index) => 
-      <Button color={buttonColor} key={index} />);
+      <Button 
+        key={index}
+        index={index} 
+        color={buttonColor}
+        buttonPress={buttonPress} 
+      />);
 
     return (
       <div className="App">

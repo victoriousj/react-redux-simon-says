@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Score extends Component {
+const Score = props => (
+    <div className="game-score">
+        <span>
+            {props.score}
+        </span>
+    </div>
+);
 
-    render() {
-        return (                    
-            <div className="game-score">
-                <span>
-                    {this.props.score}
-                </span>
-            </div>
-        );
-    }
+Score.propTypes = {
+    score: PropTypes.string.isRequired
 }
 
 export default Score;

@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-class Button extends Component {
+const Button = props => (
+    <div 
+        onClick={() => console.log(props.index)}
+        style={{backgroundColor: props.color}} 
+        className="button">
+    </div>
+);
 
-    render() {
-        return (
-            <div style={{backgroundColor: this.props.color}} className="button"></div>
-        );
-    }
-}
+Button.propTypes = {
+    index: PropTypes.number.isRequired,
+    color: PropTypes.string.isRequired,
+    buttonPress: PropTypes.func.isRequired,
+};
 
 export default Button;
