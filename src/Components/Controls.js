@@ -6,12 +6,18 @@ import ControlButtons from './ControlButtons';
 const Controls = props => (
     <div className="controls">
         <div className="game-name">
-            <span>simon</span>
+            <span className="name">simon</span>
+            <span className="game-name-buffer"></span>
         </div>
         <div className="game-controls">
             <Score 
                 score={props.score} 
                 isPlaying={props.isPlaying}
+                />
+            <Score 
+                score={props.score} 
+                isPlaying={props.isPlaying}
+                highScore={true}
                 />
             <ControlButtons 
                 isPlaying={props.isPlaying} 
