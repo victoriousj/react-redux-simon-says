@@ -32,6 +32,13 @@ const initialState = {
         ]
     ],
 
+    sounds: [
+        `https://s3.amazonaws.com/freecodecamp/simonSound1.mp3`,
+        `https://s3.amazonaws.com/freecodecamp/simonSound2.mp3`,
+        `https://s3.amazonaws.com/freecodecamp/simonSound3.mp3`,
+        `https://s3.amazonaws.com/freecodecamp/simonSound4.mp3`
+    ],
+
     currentColorScheme: 0,
 
     fetchRandomButtonIndex: () => Math.floor(Math.random() * 4), 
@@ -72,6 +79,7 @@ export default function Control(state=initialState, action) {
                 currentplayerPlaybackSequence.push(action.buttonIndex);
 
                 let newScore = parseScore(state.score);
+                new Audio(state.sounds[action.buttonIndex]).play();
                 
                 return {
                     ...state,

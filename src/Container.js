@@ -21,7 +21,7 @@ class Container extends Component {
   };
 
   render() {
-    const { dispatch, isPlaying, highScore, playerPlaybackSequence, playbackSequence, currentColorScheme, score, buttonColors } = this.props;
+    const { dispatch, isPlaying, currentColorScheme, score, buttonColors } = this.props;
 
     const startGame = bindActionCreators(ControlActionCreators.startGame, dispatch);
     const buttonPress = bindActionCreators(ControlActionCreators.buttonPress, dispatch);
