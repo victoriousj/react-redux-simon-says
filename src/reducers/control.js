@@ -36,7 +36,8 @@ const initialState = {
         `https://s3.amazonaws.com/freecodecamp/simonSound1.mp3`,
         `https://s3.amazonaws.com/freecodecamp/simonSound2.mp3`,
         `https://s3.amazonaws.com/freecodecamp/simonSound3.mp3`,
-        `https://s3.amazonaws.com/freecodecamp/simonSound4.mp3`
+        `https://s3.amazonaws.com/freecodecamp/simonSound4.mp3`,
+        `http://www.freesound.org/data/previews/331/331912_3248244-lq.mp3`
     ],
 
     currentColorScheme: 0,
@@ -50,14 +51,15 @@ export default function Control(state=initialState, action) {
 
         case ControlActionTypes.GAME_START: {
             if (!state.isPlaying) {
+                let playbackSequence = [...state.playbackSequence, state.fetchRandomButtonIndex()];
 
                 return {
                     ...state,
                     isPlaying: true,
+                    playbackSequence,
                 }
             }
             else {
-                // recursive call to hit the Game End case
                 return Control(state, { type: ControlActionTypes.GAME_END });
             }
         }
@@ -74,17 +76,34 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.BUTTON_PRESS: {
-            if (state.isPlaying) {
-                let currentplayerPlaybackSequence = state.playerPlaybackSequence;
-                currentplayerPlaybackSequence.push(action.buttonIndex);
+            if (state.isPlaying) {                
+                let currentPlayerPlaybackSequence = [...state.playerPlaybackSequence, action.buttonIndex];
+
+                for (let i = 0; i < currentPlayerPlaybackSequence.length; i++) {
+                    if (state.playbackSequence[i] !== currentPlayerPlaybackSequence[i]) {
+                        let gameOver = new Audio(state.sounds[4])
+                        gameOver.volume = 0.1;
+                        gameOver.play();
+                        return Control(state, { type: ControlActionTypes.GAME_END });
+                    }
+                }
+                new Audio(state.sounds[action.buttonIndex]).play();
+
+
+                if (currentPlayerPlaybackSequence.length !== state.playbackSequence.length) {
+                    return {
+                        ...state,
+                        playerPlaybackSequence: currentPlayerPlaybackSequence
+                    }
+                }
 
                 let newScore = parseScore(state.score);
-                new Audio(state.sounds[action.buttonIndex]).play();
-                
+
                 return {
                     ...state,
                     score: newScore,
-                    playerPlaybackSequence: currentplayerPlaybackSequence
+                    playerPlaybackSequence: [],
+                    playbackSequence: [...state.playbackSequence, state.fetchRandomButtonIndex()]
                 };
             }
 
