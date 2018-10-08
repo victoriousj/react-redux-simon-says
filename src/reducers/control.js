@@ -43,28 +43,26 @@ export default function Control(state=initialState, action) {
 
         case ControlActionTypes.GAME_START: {
             if (!state.isPlaying) {
+
                 return {
                     ...state,
                     isPlaying: true,
-                    playbackSequence: []
                 }
             }
             else {
-                return Control(
-                    state, 
-                    {
-                        type: ControlActionTypes.GAME_END
-                    }
-                );
+                // recursive call to hit the Game End case
+                return Control(state, { type: ControlActionTypes.GAME_END });
             }
         }
 
         case ControlActionTypes.GAME_END: {
+
             return {
                 ...state,
                 score: "000",
                 isPlaying: false,
-                playerPlaybackSequence: []
+                playbackSequence: [],
+                playerPlaybackSequence: [],
             };
         }
 
@@ -81,14 +79,18 @@ export default function Control(state=initialState, action) {
                     playerPlaybackSequence: currentplayerPlaybackSequence
                 };
             }
+
             return {
                 ...state,
             }
         }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
-            let nextColorScheme = state.currentColorScheme !== state.buttonColors.length -1 ? state.currentColorScheme + 1: 0;
-            console.log(nextColorScheme);
+            let nextColorScheme = 
+                state.currentColorScheme !== state.buttonColors.length -1 
+                    ? state.currentColorScheme + 1
+                    : 0;
+
             return {
                 ...state,
                 currentColorScheme: nextColorScheme
@@ -105,11 +107,11 @@ export default function Control(state=initialState, action) {
 const parseScore = score => {
     let numScore = parseInt(++score);
 
-    let parsedScore = score > 9 
-        ? score > 99 
-            ? numScore.toString()
-            : "0" + numScore
-        : "00" + numScore
+    let parsedScore = score < 10 
+        ? "00" + numScore
+        : score < 99 
+            ? "0" + numScore
+            : numScore.toString()
 
     return parsedScore;
 }

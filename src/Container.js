@@ -33,7 +33,7 @@ class Container extends Component {
     return (
       <div className="App">
         <div className="container">
-          {buttonComponents}}
+          {buttonComponents}
           <Controls 
             score={score}
             startGame={startGame}
