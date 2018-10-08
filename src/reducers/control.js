@@ -23,6 +23,12 @@ const initialState = {
             "#fff",
             "#f00",
             "#0ff"
+        ],
+        [
+            "#2ecc71",
+            "#9b59b6",
+            "#fff",
+            "#f0f",
         ]
     ],
 
@@ -51,7 +57,7 @@ export default function Control(state=initialState, action) {
                     }
                 );
             }
-        };
+        }
 
         case ControlActionTypes.GAME_END: {
             return {
@@ -60,7 +66,7 @@ export default function Control(state=initialState, action) {
                 isPlaying: false,
                 playerPlaybackSequence: []
             };
-        };
+        }
 
         case ControlActionTypes.BUTTON_PRESS: {
             if (state.isPlaying) {
@@ -78,14 +84,16 @@ export default function Control(state=initialState, action) {
             return {
                 ...state,
             }
-        };
+        }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
+            let nextColorScheme = state.currentColorScheme !== state.buttonColors.length -1 ? state.currentColorScheme + 1: 0;
+            console.log(nextColorScheme);
             return {
                 ...state,
-                currentColorScheme: state.currentColorScheme === 0 ? 1 : 0
+                currentColorScheme: nextColorScheme
             };
-        };
+        }
 
         default:
             return state;
@@ -95,14 +103,13 @@ export default function Control(state=initialState, action) {
 // Helpers
 
 const parseScore = score => {
-    let numScore = parseInt(score);
-    let parsedScore;
+    let numScore = parseInt(++score);
 
-    numScore++;
-
-    parsedScore = score < 9 
-        ? score = "00" + numScore            
-        : score = "0" + numScore;
+    let parsedScore = score > 9 
+        ? score > 99 
+            ? numScore.toString()
+            : "0" + numScore
+        : "00" + numScore
 
     return parsedScore;
 }
