@@ -3,9 +3,8 @@ import React, { Component } from 'react';
 import { CSSTransition, transit } from 'react-css-transition';
 
 const transitionStyles = {
-    defaultStyle: { transform: "translate(0)" },
-    enterStyle: { transform: transit("translate(52.5%)", 200, "ease-in-out") },
-    leaveStyle: { transform: transit("translate(0)", 200, "ease-in-out") },
+    enterStyle: { transform: transit("translate(52.5%)", 100, "ease-in-out") },
+    leaveStyle: { transform: transit("translate(0)", 100, "ease-in-out") },
     activeStyle: { transform: "translate(52.5%)" },
 };
 
@@ -19,20 +18,13 @@ class ControlButtons extends Component {
     render() {
         return (
             <div className="control-buttons">
-                <div className={`game-light ${this.props.isPlaying ? 'game-light-on' : ''}` }>
-                </div>
-                <div
-                    onClick={() => this.props.startGame()}
-                    className="game-switch"
-                >
+                <div className={`game-light ${this.props.isPlaying ? 'game-light-on' : ''}` }></div>
+                <div onClick={() => this.props.startGame()} className="game-switch">
                     <CSSTransition {...transitionStyles} active={this.props.isPlaying}>
                         <div className='game-switch-toggle'></div>
                     </CSSTransition>
                 </div>
-                <div 
-                    onClick={() => this.props.changeColorScheme()}
-                    className={`game-reset ${!this.props.isPlaying ? 'game-light-off' : ''}`}>
-                </div>
+                <div onClick={() => this.props.changeColorScheme()} className={`game-reset ${!this.props.isPlaying ? 'game-light-off' : ''}`}></div>
             </div>
         )
     }
