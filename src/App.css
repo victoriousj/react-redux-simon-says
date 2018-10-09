@@ -257,11 +257,11 @@ body {
 }
 
 .game-switch.game-off .game-slider{
-	left: 5%;
+	/* left: 5%; */
 }
 
 .game-switch.game-on .game-slider{
-	left: 55%;
+	/* left: 55%; */
 }
 
 .game-score {
