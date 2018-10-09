@@ -2,58 +2,31 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { CSSTransition, transit } from 'react-css-transition';
 
-CSSTransition.childContextTypes = {
-    // this can be empty
-}
-
 const transitionStyles = {
-    defaultStyle: {
-        transform: "translateX(-1.8vh)"
-    },
-    enterStyle: {
-      transform: transit("translateX(1.8vh)", 200, "ease-in-out"),
-    },
-    leaveStyle: {
-      transform: transit("translateX(-1.8vh)", 200, "ease-in-out"),
-    },
-    activeStyle: {
-      transform: "translate(1.8vh, 0)",
-    },
-  };
-
-  const switchStyle = {
-    borderRadius: "2px",
-    background: "#bdc3c7",
-    height: "2.5vh",
-    width: "2.5vh",
-    marginTop: '.25vh'
-  };
-
-  const Switch = () => {
-      return (
-            <div style={ switchStyle }> </div>
-        )
-    }
+    defaultStyle: { transform: "translate(0)" },
+    enterStyle: { transform: transit("translate(52.5%)", 200, "ease-in-out") },
+    leaveStyle: { transform: transit("translate(0)", 200, "ease-in-out") },
+    activeStyle: { transform: "translate(52.5%)" },
+};
 
 class ControlButtons extends Component {
     static propTypes = {
         isPlaying: PropTypes.bool.isRequired,
+        startGame: PropTypes.func.isRequired,
+        changeColorScheme: PropTypes.func.isRequired,
     }
 
     render() {
         return (
             <div className="control-buttons">
-                <div className={
-                    `game-light
-                    ${this.props.isPlaying ? 'game-light-on' : ''}`
-                    }>
+                <div className={`game-light ${this.props.isPlaying ? 'game-light-on' : ''}` }>
                 </div>
-                <div 
+                <div
                     onClick={() => this.props.startGame()}
-                    className={`game-switch ${this.props.isPlaying ? 'game-on' : 'game-off'}`}
+                    className="game-switch"
                 >
                     <CSSTransition {...transitionStyles} active={this.props.isPlaying}>
-                        <Switch />
+                        <div className='game-switch-toggle'></div>
                     </CSSTransition>
                 </div>
                 <div 
@@ -64,5 +37,8 @@ class ControlButtons extends Component {
         )
     }
 }
+
+CSSTransition.childContextTypes = {}
+
 
 export default ControlButtons;

@@ -247,6 +247,30 @@ body {
 	border-radius: 5px;
 }
 
+.game-switch * {
+	overflow: visible; 
+	/* display: block; */
+}
+.game-switch div {
+	display: block;
+}
+
+.game-switch span {
+	display: none;
+}
+
+.game-switch div.game-switch-toggle {
+	transform: translateY(10%);
+	border-radius: 2px;
+	background: #7f8c8d;
+	display: inline-block;
+	height: 2.5vh;
+	width: 2.5vh;
+	position: absolute;
+	left: 5%;
+	top: 10%;
+}    
+
 .game-slider {
 	height: 80%;
 	width: 40%;

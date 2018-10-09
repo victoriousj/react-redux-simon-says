@@ -17,9 +17,8 @@ class Button extends Component {
         return (
             <div 
                 onClick={() => this.props.buttonPress(this.props.index)}
-                style={{backgroundColor: this.props.color}} 
+                style={ {backgroundColor: this.props.color} } 
                 className="button">
-                {/* <div className={props.isOverlay ? "button-overlay" : ""} > */}
                 <div className={"button-overlay"} ></div>
                 <audio 
                     ref={this.audioElement} 
