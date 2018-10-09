@@ -14,20 +14,20 @@ class Container extends Component {
     score: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
     highScore: PropTypes.string.isRequired,
+    colorScheme: PropTypes.number.isRequired,
     buttonColors: PropTypes.array.isRequired,
     playbackSequence: PropTypes.array.isRequired,
-    currentColorScheme: PropTypes.number.isRequired,
     playerPlaybackSequence: PropTypes.array.isRequired,
   };
 
   render() {
-    const { dispatch, isPlaying, currentColorScheme, score, buttonColors } = this.props;
+    const { dispatch, isPlaying, colorScheme, score, buttonColors } = this.props;
 
     const startGame = bindActionCreators(ControlActionCreators.startGame, dispatch);
     const buttonPress = bindActionCreators(ControlActionCreators.buttonPress, dispatch);
     const changeColorScheme = bindActionCreators(ControlActionCreators.changeColorScheme, dispatch);
     
-    const buttonComponents = buttonColors[currentColorScheme].map((buttonColor, index) => 
+    const buttonComponents = buttonColors[colorScheme].map((buttonColor, index) => 
       <Button key={index} index={index} color={buttonColor} buttonPress={buttonPress} />);
 
     return (
@@ -51,9 +51,9 @@ const mapStateToProps = state => (
     score: state.score,
     isPlaying: state.isPlaying,
     highScore: state.highScore,
+    colorScheme: state.colorScheme,
     buttonColors: state.buttonColors,
     playbackSequence: state.playbackSequence,
-    currentColorScheme: state.currentColorScheme,
     playerPlaybackSequence: state.playerPlaybackSequence,
   }
 );

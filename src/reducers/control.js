@@ -40,7 +40,7 @@ const initialState = {
         `http://www.freesound.org/data/previews/331/331912_3248244-lq.mp3`
     ],
 
-    currentColorScheme: 0,
+    colorScheme: 0,
 
     fetchRandomButtonIndex: () => Math.floor(Math.random() * 4), 
 };
@@ -113,14 +113,11 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
-            let nextColorScheme = 
-                state.currentColorScheme !== state.buttonColors.length -1 
-                    ? state.currentColorScheme + 1
-                    : 0;
+            let nextColorScheme = getNextColorScheme(state);
 
             return {
                 ...state,
-                currentColorScheme: nextColorScheme
+                colorScheme: nextColorScheme
             };
         }
 
@@ -142,5 +139,8 @@ const parseScore = score => {
 
     return parsedScore;
 }
+
+const getNextColorScheme = state => 
+    ++state.colorScheme !== state.buttonColors.length ? state.colorScheme : 0;
 
 // end Helpers
