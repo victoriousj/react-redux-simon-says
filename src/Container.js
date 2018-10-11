@@ -28,7 +28,7 @@ class Container extends Component {
     const changeColorScheme = bindActionCreators(ControlActionCreators.changeColorScheme, dispatch);
     
     const buttonComponents = buttonColors[colorScheme].map((buttonColor, index) => 
-      <Button key={index} index={index} color={buttonColor} buttonPress={buttonPress} />);
+      <Button key={index} index={index} color={buttonColor} isPlaying={isPlaying} buttonPress={buttonPress} />);
 
     return (
       <div className="App">
