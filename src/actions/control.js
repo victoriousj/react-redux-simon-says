@@ -6,16 +6,34 @@ export const startGame = () => {
     };
 };
 
+export const incScore = () => {
+    return {
+        type: ControlActionTypes.INC_SCORE
+    };
+};
+
 export const endGame = () => {
     return {
         type: ControlActionTypes.GAME_END
     };
-};
+}
 
 export const buttonPress = buttonIndex => {
     return {
         type: ControlActionTypes.BUTTON_PRESS,
         buttonIndex
+    };
+};
+
+export const addToPlaybackSequence = () => {
+    return {
+        type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE
+    };
+};
+
+export const wrongEntry = () => {
+    return {
+        type: ControlActionTypes.WRONG_ENTRY
     };
 };
 

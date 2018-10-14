@@ -1,3 +1,9 @@
+import firstSound from './sounds/simonSound1.mp3';
+import secondSound from './sounds/simonSound2.mp3';
+import thirdSound from './sounds/simonSound3.mp3';
+import fourthSound from './sounds/simonSound4.mp3';
+import fithSound from './sounds/simonSound5.mp3';
+
 export const colorSchemes = [
     [
         "#e74c3c",
@@ -20,9 +26,9 @@ export const colorSchemes = [
 ];
 
 export const sounds = [
-    `https://s3.amazonaws.com/freecodecamp/simonSound1.mp3`,
-    `https://s3.amazonaws.com/freecodecamp/simonSound2.mp3`,
-    `https://s3.amazonaws.com/freecodecamp/simonSound3.mp3`,
-    `https://s3.amazonaws.com/freecodecamp/simonSound4.mp3`,
-    `http://www.freesound.org/data/previews/331/331912_3248244-lq.mp3`
+    firstSound,
+    secondSound,
+    thirdSound,
+    fourthSound,
+    fithSound,
 ];

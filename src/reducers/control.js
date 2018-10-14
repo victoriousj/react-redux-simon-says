@@ -1,5 +1,7 @@
 import * as ControlActionTypes from '../actiontypes/control';
-import { sounds, colorSchemes } from '../resources';
+import * as Helpers from '../helpers/helpers';
+import * as Resources from '../resources';
+import { sounds } from '../resources';
 
 const initialState = {
     score: "000",
@@ -12,33 +14,20 @@ const initialState = {
     
     playerPlaybackSequence: [],
 
-    buttonColors: colorSchemes,
+    buttonColors: Resources.colorSchemes,
 
-    sounds: sounds,
+    sounds: Resources.sounds,
+
+    wrongEntry: false,
 
     colorScheme: 0,
 
-    fetchRandomButtonIndex: () => Math.floor(Math.random() * 4), 
+    currentButton: null,
 };
 
 export default function Control(state=initialState, action) {
 
     switch(action.type) {
-
-        case ControlActionTypes.GAME_START: {
-            if (!state.isPlaying) {
-                let playbackSequence = [...state.playbackSequence, state.fetchRandomButtonIndex()];
-
-                return {
-                    ...state,
-                    isPlaying: true,
-                    playbackSequence,
-                }
-            }
-            else {
-                return Control(state, { type: ControlActionTypes.GAME_END });
-            }
-        }
 
         case ControlActionTypes.GAME_END: {
 
@@ -46,50 +35,77 @@ export default function Control(state=initialState, action) {
                 ...state,
                 score: "000",
                 isPlaying: false,
+                currentButton: null,
                 playbackSequence: [],
                 playerPlaybackSequence: [],
             };
         }
 
-        case ControlActionTypes.BUTTON_PRESS: {
-            if (state.isPlaying) {                
-                let currentPlayerPlaybackSequence = [...state.playerPlaybackSequence, action.buttonIndex];
+        case ControlActionTypes.GAME_START: {
+            let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+            
+            return !state.isPlaying 
+            ?   {   ...state,
+                isPlaying: true,
+                playbackSequence,
+                wrongEntry: false,
+                } 
+            :   Control(state, { type: ControlActionTypes.GAME_END });
+        }
 
-                for (let i = 0; i < currentPlayerPlaybackSequence.length; i++) {
-                    if (state.playbackSequence[i] !== currentPlayerPlaybackSequence[i]) {
-                        let gameOver = new Audio(state.sounds[4])
-                        gameOver.volume = 0.1;
-                        gameOver.play();
-                        return Control(state, { type: ControlActionTypes.GAME_END });
-                    }
-                }
-                new Audio(state.sounds[action.buttonIndex]).play();
-
-
-                if (currentPlayerPlaybackSequence.length !== state.playbackSequence.length) {
-                    return {
-                        ...state,
-                        playerPlaybackSequence: currentPlayerPlaybackSequence
-                    }
-                }
-
-                let newScore = parseScore(state.score);
-
-                return {
-                    ...state,
-                    score: newScore,
-                    playerPlaybackSequence: [],
-                    playbackSequence: [...state.playbackSequence, state.fetchRandomButtonIndex()]
-                };
-            }
+        case ControlActionTypes.INC_SCORE: {
+            let newScore = Helpers.parseScore(state.score);
 
             return {
                 ...state,
+                score: newScore,
+            }
+        }
+
+        case ControlActionTypes.WRONG_ENTRY: {
+            let soundEffect =  new Audio(sounds[4]);
+            soundEffect.volume = 0.4;
+            soundEffect.play();
+
+            return {
+                ...state,
+                wrongEntry: true,
+            }
+        }
+
+        case ControlActionTypes.BUTTON_PRESS: {
+            let currentButton = action.buttonIndex;
+            let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
+            let newPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+
+            // for (let i = newPlayerPlaybackSequence.length; i--;) {
+            //     if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
+            //         return Control(state, {type: ControlActionTypes.WRONG_ENTRY});
+            //     }
+            // }
+
+            let soundEffect =  new Audio(sounds[currentButton]);
+            soundEffect.currentTime = 0.1;
+            soundEffect.play();
+            
+            // Return the player's inputs until they are the same length and contents, 
+            // then reset the player array and add a new entry
+            return state.playbackSequence.length !== newPlayerPlaybackSequence.length
+                ? {...state, playerPlaybackSequence: newPlayerPlaybackSequence, currentButton }
+                : { ...state, playerPlaybackSequence: [], playbackSequence: newPlaybackSequence, currentButton}
+        }
+
+        case ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE: {
+            let nextPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+
+            return {
+                ...state,
+                playbackSequence: nextPlaybackSequence
             }
         }
 
         case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
-            let nextColorScheme = getNextColorScheme(state);
+            let nextColorScheme = Helpers.getNextColorScheme(state);
 
             return {
                 ...state,
@@ -101,22 +117,3 @@ export default function Control(state=initialState, action) {
             return state;
     }
 }
-
-// Helpers
-
-const parseScore = score => {
-    let numScore = parseInt(++score);
-
-    let parsedScore = score < 10 
-        ? "00" + numScore
-        : score < 99 
-            ? "0" + numScore
-            : numScore.toString()
-
-    return parsedScore;
-}
-
-const getNextColorScheme = state => 
-    ++state.colorScheme !== state.buttonColors.length ? state.colorScheme : 0;
-
-// end Helpers

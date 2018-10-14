@@ -11,35 +11,28 @@ class Button extends Component {
     
     constructor(props) {
         super(props);
-        this.state = { show: false };
-        this.audioElement = React.createRef();
-        this.showOverlay = this.showOverlay.bind(this);
+        this.state = { 
+            show: false,
+        };
+
+        this.buttonPress = this.buttonPress.bind(this);
     }
     
-    showOverlay() {
+    buttonPress() {
         if (this.props.isPlaying) {
-            this.setState( { show: true } );
-
-            setTimeout(() => this.setState( { show: false } ), 150);
+            this.props.buttonPress(this.props.index)
+            
+            this.setState( { show: true }, 
+                () => setTimeout(() => 
+                    this.setState( { show: false } ), 150));
         }
     }
 
     render() {
 
         return (
-            <div 
-                onClick={() => this.props.buttonPress(this.props.index)}
-                style={ {backgroundColor: this.props.color} } 
-                className="button">
-
-                <div onClick={this.showOverlay}
-                    className={`button-overlay ${this.state.show ? "button-overlay-on" : ""} ${this.props.isPlaying ? "game-on" : ""}`} >
-                </div>
-
-                <audio 
-                    ref={this.audioElement} 
-                    src={this.props.sound}
-                ></audio>
+            <div onClick={this.buttonPress} style={ {backgroundColor: this.props.color} } className="button">
+                <div className={`button-overlay ${this.state.show ? "button-overlay-on" : ""} ${this.props.isPlaying ? "game-on" : ""}`} ></div>
             </div>
         );
     }
