@@ -60,8 +60,8 @@ export default function Control(state=initialState, action) {
 
         case ControlActionTypes.WRONG_ENTRY: {
             let soundEffect =  new Audio(sounds[4]);
-            soundEffect.currentTime = 0.1;
-            soundEffect.volume = 0.3;
+            soundEffect.currentTime = 0.05;
+            soundEffect.volume = 0.2;
             soundEffect.play();
 
             return {

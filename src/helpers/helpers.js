@@ -10,10 +10,8 @@ export const parseScore = score => {
     return parsedScore;
 }
 
-export const getNextColorScheme = state => 
-    ++state.colorScheme !== state.buttonColors.length ? state.colorScheme : 0;
-
-
 export const fetchRandomButtonIndex = () => Math.floor(Math.random() * 4);
+
+export const getNextColorScheme = state => ++state.colorScheme !== state.buttonColors.length ? state.colorScheme : 0;
 
 export const compareArrays = (arr1, arr2) => arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);

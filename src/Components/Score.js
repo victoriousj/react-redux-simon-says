@@ -3,13 +3,7 @@ import PropTypes from 'prop-types';
 
 const Score = props => (
     <div className="game-score">
-        <span 
-            className={
-                props.isPlaying
-                ? "game-light-on" 
-                : "game-light-off"
-            } 
-        >
+        <span className={props.isPlaying ? "game-light-on" : "game-light-off"} >
             {props.score}
         </span>
     </div>

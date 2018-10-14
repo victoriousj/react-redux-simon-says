@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 import { connect  } from 'react-redux';
 import PropTypes from 'prop-types';
 
-// import './App.2.css';
-
 import './App.css';
 import Button from './components/Button';
 import Controls from './components/Controls';
@@ -35,14 +33,10 @@ class Container extends Component {
     this.addToPlaybackSequence = bindActionCreators(ControlActionCreators.addToPlaybackSequence, dispatch);
   }
 
-  componentDidMount() {
-  }
-
   componentDidUpdate(prevState) {
-    console.log(this.props.playerPlaybackSequence);
 
     if (this.props.playbackSequence.length !== prevState.playbackSequence.length) {
-      console.log(this.props.playbackSequence[this.props.playbackSequence.length - 1]);
+      // Logic for displaying the playback sequence to users.
     }
 
   }
@@ -57,12 +51,7 @@ class Container extends Component {
       <div className="App">
         <div className="container">
           {buttonComponents}
-          <Controls 
-            score={this.props.score}
-            startGame={this.startGame}
-            isPlaying={this.props.isPlaying}
-            changeColorScheme={this.changeColorScheme}
-          />
+          <Controls score={this.props.score} startGame={this.startGame} isPlaying={this.props.isPlaying} changeColorScheme={this.changeColorScheme} />
         </div>
       </div>
     );
