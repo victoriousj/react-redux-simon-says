@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class Button extends Component {
+export default class Button extends Component {
     static propTypes = {
         index: PropTypes.number.isRequired,
         color: PropTypes.string.isRequired,
@@ -37,5 +37,3 @@ class Button extends Component {
         );
     }
 }
-
-export default Button;

@@ -76,8 +76,8 @@ export default function Control(state=initialState, action) {
         case ControlActionTypes.BUTTON_PRESS: {
             let currentButton = action.buttonIndex;
             let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
-            let newPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
 
+            // Start at the end of the array and work back
             for (let i = newPlayerPlaybackSequence.length; i--;) {
                 if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
                     return Control(state, {type: ControlActionTypes.WRONG_ENTRY});
@@ -91,16 +91,17 @@ export default function Control(state=initialState, action) {
             // Return the player's inputs until they are the same length and contents, 
             // then reset the player array and add a new entry
             return state.playbackSequence.length !== newPlayerPlaybackSequence.length
-                ? {...state, playerPlaybackSequence: newPlayerPlaybackSequence, currentButton }
-                : { ...state, playerPlaybackSequence: [], playbackSequence: newPlaybackSequence, currentButton}
+                ? {...state, playerPlaybackSequence: newPlayerPlaybackSequence }
+                : Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
         }
 
         case ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE: {
-            let nextPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+            let newPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
 
             return {
                 ...state,
-                playbackSequence: nextPlaybackSequence
+                playerPlaybackSequence: [],
+                playbackSequence: newPlaybackSequence
             }
         }
 

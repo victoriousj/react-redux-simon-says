@@ -2,13 +2,14 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { CSSTransition, transit } from 'react-css-transition';
 
+CSSTransition.childContextTypes = {}
 const transitionStyles = {
     enterStyle: { transform: transit("translate(52.5%)", 100, "ease-in-out") },
     leaveStyle: { transform: transit("translate(0)", 100, "ease-in-out") },
     activeStyle: { transform: "translate(52.5%)" },
 };
 
-class ControlButtons extends Component {
+export default class ControlButtons extends Component {
     static propTypes = {
         isPlaying: PropTypes.bool.isRequired,
         startGame: PropTypes.func.isRequired,
@@ -29,8 +30,3 @@ class ControlButtons extends Component {
         )
     }
 }
-
-CSSTransition.childContextTypes = {}
-
-
-export default ControlButtons;

@@ -53,7 +53,8 @@ class Container extends Component {
   render() {
 
     const buttonComponents = this.props.buttonColors[this.props.colorScheme].map((buttonColor, index) => 
-      <Button key={index} index={index} color={buttonColor} isPlaying={this.props.isPlaying} buttonPress={this.buttonPress} />);
+      <Button key={index} index={index} color={buttonColor} isPlaying={this.props.isPlaying} buttonPress={this.buttonPress} />
+    );
 
     return (
       <div className="App">
