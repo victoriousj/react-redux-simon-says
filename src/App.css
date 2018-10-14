@@ -29,14 +29,22 @@ body {
 	position: relative;
 	margin: 10vh auto;
 	padding: 2vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	flex-direction: row;
 	overflow: hidden;
 	border-radius: 50%;
-	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+	0 10px 10px rgba(0,0,0,0.22), 
+	inset 0 14px 28px rgba(0,0,0,0.25),
+	inset  0 10px 10px rgba(0,0,0,0.22);
 }
 
 .button {
-	height: 33vh;
-	width: 33vh;
+	height: 33.8vh;
+	width: 33.5vh;
 	box-sizing: border-box;
 	margin: 1vh;
 	display: inline-block;
@@ -64,7 +72,7 @@ body {
 
 
 .button:nth-of-type(1) {
-	border-radius: 500px 0 0 0;
+	border-radius: 100vh 2vh 0 2vh;
 	background-color: #e74c3c;
 	background-image: radial-gradient(
 		circle at bottom right,
@@ -86,7 +94,7 @@ body {
 }
 
 .button:nth-of-type(2) {
-	border-radius: 0 500px 0 0;
+	border-radius: 2vh 100vh 2vh 0;
 	background-color: #f1c40f;
 	background-image: radial-gradient(
 		circle at bottom left,
@@ -108,7 +116,7 @@ body {
 }
 
 .button:nth-of-type(3) {
-	border-radius: 0 0 0 500px;
+	border-radius: 2vh 0 2vh 100vh;
 	background-color: #2ecc71;
 	background-image: radial-gradient(
 		circle at top right,
@@ -130,7 +138,7 @@ body {
 }
 
 .button:nth-of-type(4) {
-	border-radius: 0 0 500px 0;
+	border-radius: 0 2vh 100vh 2vh;
 	background-color: #9b59b6;
 	background-image: radial-gradient(
 		circle at top left,
@@ -285,14 +293,6 @@ body {
 	position: absolute;
 	top: 10%;
 	border-radius: 2px;
-}
-
-.game-switch.game-off .game-slider{
-	/* left: 5%; */
-}
-
-.game-switch.game-on .game-slider{
-	/* left: 55%; */
 }
 
 .game-score {
