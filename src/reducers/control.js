@@ -45,11 +45,7 @@ export default function Control(state=initialState, action) {
             let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
             
             return !state.isPlaying 
-            ?   {   ...state,
-                isPlaying: true,
-                playbackSequence,
-                wrongEntry: false,
-                } 
+            ?   { ...state, isPlaying: true, playbackSequence, wrongEntry: false } 
             :   Control(state, { type: ControlActionTypes.GAME_END });
         }
 
@@ -64,7 +60,8 @@ export default function Control(state=initialState, action) {
 
         case ControlActionTypes.WRONG_ENTRY: {
             let soundEffect =  new Audio(sounds[4]);
-            soundEffect.volume = 0.4;
+            soundEffect.currentTime = 0.1;
+            soundEffect.volume = 0.3;
             soundEffect.play();
 
             return {
@@ -80,12 +77,14 @@ export default function Control(state=initialState, action) {
             // Start at the end of the array and work back
             for (let i = newPlayerPlaybackSequence.length; i--;) {
                 if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
-                    return Control(state, {type: ControlActionTypes.WRONG_ENTRY});
+                    Control(state, {type: ControlActionTypes.WRONG_ENTRY});
+                    return Control(state, { type: ControlActionTypes.GAME_END });
                 }
             }
 
+            // Skip slightly so sound is heard right after button press
             let soundEffect =  new Audio(sounds[currentButton]);
-            soundEffect.currentTime = 0.1;
+            soundEffect.currentTime = 0.125;
             soundEffect.play();
             
             // Return the player's inputs until they are the same length and contents, 

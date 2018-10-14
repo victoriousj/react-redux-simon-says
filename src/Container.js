@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 // import './App.2.css';
 
 import './App.css';
-import { sounds } from './resources';
 import Button from './components/Button';
 import Controls from './components/Controls';
 import * as ControlActionCreators from './actions/control';
@@ -40,14 +39,12 @@ class Container extends Component {
   }
 
   componentDidUpdate(prevState) {
-    this.soundEffect.src = sounds[this.props.currentButton];
-    if (prevState.isPlaying === false && this.props.isPlaying === true) {
-      return; 
+    console.log(this.props.playerPlaybackSequence);
+
+    if (this.props.playbackSequence.length !== prevState.playbackSequence.length) {
+      console.log(this.props.playbackSequence[this.props.playbackSequence.length - 1]);
     }
 
-    if (this.props.wrongEntry && this.props.playbackSequence.length > 0) {
-      this.endGame();
-    } 
   }
 
   render() {
