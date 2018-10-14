@@ -78,11 +78,11 @@ export default function Control(state=initialState, action) {
             let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
             let newPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
 
-            // for (let i = newPlayerPlaybackSequence.length; i--;) {
-            //     if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
-            //         return Control(state, {type: ControlActionTypes.WRONG_ENTRY});
-            //     }
-            // }
+            for (let i = newPlayerPlaybackSequence.length; i--;) {
+                if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
+                    return Control(state, {type: ControlActionTypes.WRONG_ENTRY});
+                }
+            }
 
             let soundEffect =  new Audio(sounds[currentButton]);
             soundEffect.currentTime = 0.1;
