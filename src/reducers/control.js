@@ -6,23 +6,21 @@ import { sounds } from '../resources';
 const initialState = {
     score: "000",
     
+    colorScheme: 0,
+    
     highScore: "000",
-
+    
     isPlaying: false,
-
+    
+    currentButton: null,
+    
     playbackSequence: [],
+    
+    sounds: Resources.sounds,
     
     playerPlaybackSequence: [],
 
     buttonColors: Resources.colorSchemes,
-
-    sounds: Resources.sounds,
-
-    wrongEntry: false,
-
-    colorScheme: 0,
-
-    currentButton: null,
 };
 
 export default function Control(state=initialState, action) {
@@ -40,15 +38,7 @@ export default function Control(state=initialState, action) {
                 playerPlaybackSequence: [],
             };
         }
-
-        case ControlActionTypes.GAME_START: {
-            let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
-            
-            return !state.isPlaying 
-            ?   { ...state, isPlaying: true, playbackSequence, wrongEntry: false } 
-            :   Control(state, { type: ControlActionTypes.GAME_END });
-        }
-
+        
         case ControlActionTypes.INC_SCORE: {
             let newScore = Helpers.parseScore(state.score);
 
@@ -58,10 +48,17 @@ export default function Control(state=initialState, action) {
             }
         }
 
+        case ControlActionTypes.GAME_START: {
+            let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+            
+            return !state.isPlaying 
+            ?   { ...state, isPlaying: true, playbackSequence, wrongEntry: false } 
+            :   Control(state, { type: ControlActionTypes.GAME_END });
+        }
+
         case ControlActionTypes.WRONG_ENTRY: {
             let soundEffect =  new Audio(sounds[4]);
-            soundEffect.currentTime = 0.05;
-            soundEffect.volume = 0.2;
+            soundEffect.volume = 0.07;
             soundEffect.play();
 
             return {
@@ -82,7 +79,7 @@ export default function Control(state=initialState, action) {
                 }
             }
 
-            // Skip slightly so sound is heard right after button press
+            // Skip into audio slightly so sound is heard right after button press
             let soundEffect =  new Audio(sounds[currentButton]);
             soundEffect.currentTime = 0.125;
             soundEffect.play();

@@ -21,7 +21,6 @@ class Container extends Component {
 
   constructor(props) {
     super(props);
-
     const { dispatch } = props;
 
     this.soundEffect = new Audio();
@@ -34,11 +33,9 @@ class Container extends Component {
   }
 
   componentDidUpdate(prevState) {
-
     if (this.props.playbackSequence.length !== prevState.playbackSequence.length) {
       // Logic for displaying the playback sequence to users.
     }
-
   }
 
   render() {
@@ -64,7 +61,6 @@ const mapStateToProps = state => (
     sounds: state.sounds,
     isPlaying: state.isPlaying,
     highScore: state.highScore,
-    wrongEntry: state.wrongEntry,
     colorScheme: state.colorScheme,
     buttonColors: state.buttonColors,
     currentButton: state.currentButton,
