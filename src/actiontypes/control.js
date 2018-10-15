@@ -1,10 +1,6 @@
 export const GAME_END = 'GAME_END';
 
-export const INC_SCORE = 'INC_SCORE';
-
 export const GAME_START = 'GAME_START';
-
-export const WRONG_ENTRY = 'WRONG_ENTRY';
 
 export const BUTTON_PRESS = 'BUTTON_PRESS';
 

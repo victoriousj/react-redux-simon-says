@@ -1,13 +1,23 @@
-export const parseScore = score => {
-    let numScore = parseInt(++score);
+export const parseScore = state => {
+    console.log('state', state);
+    let s = parseInt(state.score);
+    let hs = parseInt(state.highScore);
 
-    let parsedScore = score < 10 
-        ? "00" + numScore
-        : score < 99 
-            ? "0" + numScore
-            : numScore.toString()
+    let parsedScore = ++s < 10 
+    ? "00" + s
+    : s < 99 
+    ? "0" + s
+    : s.toString();
 
-    return parsedScore;
+    let parsedHighScore = s > hs ? parsedScore : state.highScore;
+    
+    let newState = {
+        ...state,
+        score: parsedScore,
+        highScore: parsedHighScore,
+    }
+    console.log('state', newState);
+    return newState;
 }
 
 export const fetchRandomButtonIndex = () => Math.floor(Math.random() * 4);

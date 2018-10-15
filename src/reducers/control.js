@@ -38,15 +38,6 @@ export default function Control(state=initialState, action) {
                 playerPlaybackSequence: [],
             };
         }
-        
-        case ControlActionTypes.INC_SCORE: {
-            let newScore = Helpers.parseScore(state.score);
-
-            return {
-                ...state,
-                score: newScore,
-            }
-        }
 
         case ControlActionTypes.GAME_START: {
             let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
@@ -56,17 +47,6 @@ export default function Control(state=initialState, action) {
             :   Control(state, { type: ControlActionTypes.GAME_END });
         }
 
-        case ControlActionTypes.WRONG_ENTRY: {
-            let soundEffect =  new Audio(sounds[4]);
-            soundEffect.volume = 0.07;
-            soundEffect.play();
-
-            return {
-                ...state,
-                wrongEntry: true,
-            }
-        }
-
         case ControlActionTypes.BUTTON_PRESS: {
             let currentButton = action.buttonIndex;
             let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
@@ -74,7 +54,9 @@ export default function Control(state=initialState, action) {
             // Start at the end of the array and work back
             for (let i = newPlayerPlaybackSequence.length; i--;) {
                 if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
-                    Control(state, {type: ControlActionTypes.WRONG_ENTRY});
+                    let soundEffect =  new Audio(sounds[4]);
+                    soundEffect.volume = 0.07;
+                    soundEffect.play();
                     return Control(state, { type: ControlActionTypes.GAME_END });
                 }
             }
@@ -84,11 +66,16 @@ export default function Control(state=initialState, action) {
             soundEffect.currentTime = 0.125;
             soundEffect.play();
             
-            // Return the player's inputs until they are the same length and contents, 
-            // then reset the player array and add a new entry
-            return state.playbackSequence.length !== newPlayerPlaybackSequence.length
-                ? {...state, playerPlaybackSequence: newPlayerPlaybackSequence }
-                : Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
+            if (state.playbackSequence.length !== newPlayerPlaybackSequence.length) {
+                return {
+                    ...state, 
+                    playerPlaybackSequence: newPlayerPlaybackSequence 
+                }
+            }
+            console.log('oState', state);
+            state = Helpers.parseScore(state);
+            console.log('nState', state);
+            return Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
         }
 
         case ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE: {

@@ -25,7 +25,6 @@ class Container extends Component {
 
     this.soundEffect = new Audio();
     this.endGame = bindActionCreators(ControlActionCreators.endGame, dispatch);
-    this.incScore = bindActionCreators(ControlActionCreators.incScore, dispatch);
     this.startGame = bindActionCreators(ControlActionCreators.startGame, dispatch);
     this.buttonPress = bindActionCreators(ControlActionCreators.buttonPress, dispatch);
     this.changeColorScheme = bindActionCreators(ControlActionCreators.changeColorScheme, dispatch);
