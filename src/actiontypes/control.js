@@ -2,6 +2,8 @@ export const GAME_END = 'GAME_END';
 
 export const GAME_START = 'GAME_START';
 
+export const INPUT_PAUSE = 'INPUT_PAUSE';
+
 export const BUTTON_PRESS = 'BUTTON_PRESS';
 
 export const ADD_TO_PLAYBACK_SEQUENCE = "ADD_TO_PLAYBACK_SEQUENCE";

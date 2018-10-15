@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
+import { sounds } from '../resources';
+
 export default class Button extends Component {
     static propTypes = {
         index: PropTypes.number.isRequired,
         color: PropTypes.string.isRequired,
         isPlaying: PropTypes.bool.isRequired,
+        inputPause: PropTypes.bool.isRequired,
         buttonPress: PropTypes.func.isRequired,
     };
     
@@ -18,14 +21,16 @@ export default class Button extends Component {
     }
     
     buttonPress() {
+        this.setState( { show: true });
 
-        if (this.props.isPlaying) {
+        let soundEffect =  new Audio(sounds[this.props.index]);
+        soundEffect.currentTime = 0.125;
+        soundEffect.play();
+                    
+        setTimeout(() => this.setState( { show: false } ), 150);
+
+        if (this.props.isPlaying && !this.props.inputPause) {
             this.props.buttonPress(this.props.index)
-            this.setState( { show: true });
-            
-            setTimeout(() => 
-                this.setState( { show: false } )
-            , 150);
         }
     }
 

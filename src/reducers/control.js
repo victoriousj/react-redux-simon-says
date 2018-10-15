@@ -11,10 +11,12 @@ const initialState = {
     highScore: "000",
     
     isPlaying: false,
+
+    inputPause: false,
     
     currentButton: null,
     
-    playbackSequence: [],
+    playbackSequence: [0, 0, 1, 0, 3, 2],
     
     sounds: Resources.sounds,
     
@@ -47,6 +49,16 @@ export default function Control(state=initialState, action) {
             :   Control(state, { type: ControlActionTypes.GAME_END });
         }
 
+        case ControlActionTypes.INPUT_PAUSE: {
+            let toggledInputPause = !state.inputPause;
+
+            console.log('input pause:', toggledInputPause);
+            return {
+                ...state,
+                inputPause: !state.inputPause,
+            }
+        }
+
         case ControlActionTypes.BUTTON_PRESS: {
             let currentButton = action.buttonIndex;
             let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
@@ -60,11 +72,6 @@ export default function Control(state=initialState, action) {
                     return Control(state, { type: ControlActionTypes.GAME_END });
                 }
             }
-
-            // Skip into audio slightly so sound is heard right after button press
-            let soundEffect =  new Audio(sounds[currentButton]);
-            soundEffect.currentTime = 0.125;
-            soundEffect.play();
             
             if (state.playbackSequence.length !== newPlayerPlaybackSequence.length) {
                 return {
@@ -72,9 +79,7 @@ export default function Control(state=initialState, action) {
                     playerPlaybackSequence: newPlayerPlaybackSequence 
                 }
             }
-            console.log('oState', state);
             state = Helpers.parseScore(state);
-            console.log('nState', state);
             return Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
         }
 

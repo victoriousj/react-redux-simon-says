@@ -5,6 +5,8 @@ export const endGame = () => ({ type: ControlActionTypes.GAME_END });
 
 export const startGame = () => ({ type: ControlActionTypes.GAME_START });
 
+export const inputPause = () => ({ type: ControlActionTypes.INPUT_PAUSE });
+
 export const addToPlaybackSequence = () => ({ type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE });
 
 export const buttonPress = buttonIndex => ({ type: ControlActionTypes.BUTTON_PRESS, buttonIndex });
