@@ -13,6 +13,7 @@ export default class Button extends Component {
         super(props);
         
         this.state = { show: false };
+        
         this.buttonPress = this.buttonPress.bind(this);
     }
     
@@ -20,7 +21,11 @@ export default class Button extends Component {
 
         if (this.props.isPlaying) {
             this.props.buttonPress(this.props.index)
-            this.setState( { show: true }, () => setTimeout(() => this.setState( { show: false } ), 150));
+            this.setState( { show: true });
+            
+            setTimeout(() => 
+                this.setState( { show: false } )
+            , 150);
         }
     }
 
