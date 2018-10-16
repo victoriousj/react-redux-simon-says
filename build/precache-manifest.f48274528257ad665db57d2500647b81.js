@@ -4,12 +4,12 @@ self.__precacheManifest = [
     "url": "/static/media/simonSound3.f3c18b98.mp3"
   },
   {
-    "revision": "13c976edba420e776049",
-    "url": "/static/css/main.59d80213.chunk.css"
+    "revision": "a387d82b36746e00088e",
+    "url": "/static/css/main.b45b3c0d.chunk.css"
   },
   {
-    "revision": "3d9383473fb2d26695f2",
-    "url": "/static/js/1.3d938347.chunk.js"
+    "revision": "d0bdbbd64dbbe658109c",
+    "url": "/static/js/1.d0bdbbd6.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/static/media/simonSound2.c3c86e71.mp3"
   },
   {
-    "revision": "13c976edba420e776049",
-    "url": "/static/js/main.13c976ed.chunk.js"
+    "revision": "a387d82b36746e00088e",
+    "url": "/static/js/main.a387d82b.chunk.js"
   },
   {
     "revision": "f4a912ee52e2c884a80499208c5568cc",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/static/media/LilitaOne-Regular.0d4e1383.ttf"
   },
   {
-    "revision": "211799cae7e737a96a2718bc3c6fbb0e",
+    "revision": "aee2b98ec5d1a46db72a073fd31566c4",
     "url": "/index.html"
   }
 ];

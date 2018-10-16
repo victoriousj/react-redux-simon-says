@@ -4,9 +4,9 @@ import Container from './Container';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 
-import './index.css';
-
 import ControlReducer from './reducers/control';
+
+import './App.css';
 
 const store = createStore(
     ControlReducer,

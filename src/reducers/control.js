@@ -15,7 +15,7 @@ const initialState = {
     
     currentButton: null,
     
-    playbackSequence: [0,1,3,2,0,1,3,2],
+    playbackSequence: [],
     
     playerPlaybackSequence: [],
 
@@ -56,7 +56,7 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.ALLOW_INPUT: {
-console.log('allow');
+
             return {
                 ...state,
                 inputPause: false,
@@ -64,7 +64,6 @@ console.log('allow');
         }
 
         case ControlActionTypes.HALT_INPUT: {
-            console.log('halt');
 
             return {
                 ...state,

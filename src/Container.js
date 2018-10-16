@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import { connect  } from 'react-redux';
 import PropTypes from 'prop-types';
 
-import './App.css';
 import Button from './components/Button';
 import { delay } from './helpers/helpers';
 import Controls from './components/Controls';
