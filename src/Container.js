@@ -12,8 +12,9 @@ import * as ControlActionCreators from './actions/control';
 class Container extends Component {
   static propTypes = {
     score: PropTypes.string.isRequired,
-    isPlaying: PropTypes.bool.isRequired,
     hScore: PropTypes.string.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
+    inputPause: PropTypes.bool.isRequired,
     colorScheme: PropTypes.number.isRequired,
     buttonColors: PropTypes.array.isRequired,
     playbackSequence: PropTypes.array.isRequired,
@@ -22,11 +23,13 @@ class Container extends Component {
 
   constructor(props) {
     super(props);
+
     const { dispatch } = props;
 
     this.endGame = bindActionCreators(ControlActionCreators.endGame, dispatch);
     this.startGame = bindActionCreators(ControlActionCreators.startGame, dispatch);
-    this.inputPause = bindActionCreators(ControlActionCreators.inputPause, dispatch);
+    this.haltInput = bindActionCreators(ControlActionCreators.haltInput, dispatch);
+    this.allowInput = bindActionCreators(ControlActionCreators.allowInput, dispatch);
     this.buttonPress = bindActionCreators(ControlActionCreators.buttonPress, dispatch);
     this.changeColorScheme = bindActionCreators(ControlActionCreators.changeColorScheme, dispatch);
     this.addToPlaybackSequence = bindActionCreators(ControlActionCreators.addToPlaybackSequence, dispatch);
@@ -35,10 +38,8 @@ class Container extends Component {
   }
 
   componentDidUpdate(prevState) {
-    if (this.props.playbackSequence.length !== prevState.playbackSequence.length) {
-      setTimeout(() => {
-        this.showPlaybackSequence();
-      }, 500);
+    if (this.props.playbackSequence.length !== prevState.playbackSequence.length && this.props.isPlaying === true) {
+      setTimeout(() => { this.showPlaybackSequence() }, 1000);
     }
   }
 
@@ -46,16 +47,17 @@ class Container extends Component {
     let playbackSequence = this.props.playbackSequence;
     let refs = this.refs;
 
-    this.inputPause();
     
-    async function animatePlaybackSequence() {
-      for (let i = 0; i < playbackSequence.length; i++) {
-        refs[playbackSequence[i]].buttonPress();
+    const animatePlaybackSequence = async () => {
+      this.haltInput();
+      for (let i = 0; i < playbackSequence.length;) {
+        refs[playbackSequence[i++]].buttonPress();
         await delay(500);
       }
+      await this.allowInput();
     };
 
-    animatePlaybackSequence().then(this.inputPause());
+    animatePlaybackSequence();
   }
 
   render() {

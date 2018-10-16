@@ -3,6 +3,7 @@ import secondSound from './sounds/simonSound2.mp3';
 import thirdSound from './sounds/simonSound3.mp3';
 import fourthSound from './sounds/simonSound4.mp3';
 import fithSound from './sounds/simonSound5.mp3';
+import sixthSound from './sounds/success.flac';
 
 export const colorSchemes = [
     [
@@ -31,4 +32,5 @@ export const sounds = [
     thirdSound,
     fourthSound,
     fithSound,
+    sixthSound,
 ];

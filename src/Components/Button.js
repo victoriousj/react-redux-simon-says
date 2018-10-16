@@ -32,11 +32,11 @@ export default class Button extends Component {
     }
 
     registerButtonPress() {
-        this.buttonPress();
-
-        if (this.props.isPlaying && !this.props.inputPause) {
+        if (!this.props.inputPause && this.props.isPlaying) {
+            this.buttonPress();
             this.props.buttonPress(this.props.index)
         }
+
     }
 
     render() {

@@ -1,7 +1,6 @@
 import * as ControlActionTypes from '../actiontypes/control';
 import * as Helpers from '../helpers/helpers';
 import * as Resources from '../resources';
-import { sounds } from '../resources';
 
 const initialState = {
     score: "000",
@@ -16,7 +15,7 @@ const initialState = {
     
     currentButton: null,
     
-    playbackSequence: [],
+    playbackSequence: [0,1,3,2,0,1,3,2],
     
     playerPlaybackSequence: [],
 
@@ -51,16 +50,25 @@ export default function Control(state=initialState, action) {
 
             return { 
                 ...state, 
-                isPlaying: true, 
+                isPlaying: true,
                 playbackSequence,
             } 
         }
 
-        case ControlActionTypes.INPUT_PAUSE: {
+        case ControlActionTypes.ALLOW_INPUT: {
+console.log('allow');
+            return {
+                ...state,
+                inputPause: false,
+            }
+        }
+
+        case ControlActionTypes.HALT_INPUT: {
+            console.log('halt');
 
             return {
                 ...state,
-                inputPause: !state.inputPause,
+                inputPause: true,
             }
         }
 
@@ -73,20 +81,28 @@ export default function Control(state=initialState, action) {
             // Start at the end of the array and work back
             for (let i = newPlayerPlaybackSequence.length; i--;) {
                 if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]){
-                    let soundEffect =  new Audio(sounds[4]);
+                    let soundEffect =  new Audio(Resources.sounds[4]);
                     soundEffect.volume = 0.07;
                     soundEffect.play();
+
                     return Control(state, { type: ControlActionTypes.GAME_END });
                 }
             }
             
             if (state.playbackSequence.length !== newPlayerPlaybackSequence.length) {
+
                 return {
                     ...state, 
                     playerPlaybackSequence: newPlayerPlaybackSequence 
                 }
             }
+
+            let soundEffect = new Audio(Resources.sounds[5]);
+            soundEffect.volume = 0.3;
+            setTimeout(() => { soundEffect.play() }, 300);
+
             state = Helpers.parseScore(state);
+
             return Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
         }
 

@@ -1,3 +1,22 @@
+export const fetchRandomButtonIndex = () => 
+    Math.floor(Math.random() * 4);
+
+export const getNextColorScheme = state => 
+    ++state.colorScheme !== state.buttonColors.length 
+    ? state.colorScheme 
+    : 0;
+
+export const compareArrays = (arr1, arr2) => 
+    arr1.length === arr2.length && 
+    arr1.every((value, index) => 
+        value === arr2[index]);
+
+export const delay = (amount) => {
+    return new Promise(resolve => {
+      setTimeout(resolve, amount);
+    })
+};
+
 export const parseScore = state => {
     let s = parseInt(state.score);
     let hs = parseInt(state.highScore);
@@ -10,7 +29,7 @@ export const parseScore = state => {
 
     let parsedHighScore = s > hs 
         ? parsedScore 
-            : state.highScore;
+        : state.highScore;
     
     let newState = {
         ...state,
@@ -19,15 +38,3 @@ export const parseScore = state => {
     }
     return newState;
 }
-
-export const fetchRandomButtonIndex = () => Math.floor(Math.random() * 4);
-
-export const getNextColorScheme = state => ++state.colorScheme !== state.buttonColors.length ? state.colorScheme : 0;
-
-export const compareArrays = (arr1, arr2) => arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
-
-export const delay = (amount) => {
-    return new Promise(resolve => {
-      setTimeout(resolve, amount);
-    })
-  };

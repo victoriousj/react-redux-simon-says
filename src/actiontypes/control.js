@@ -2,7 +2,9 @@ export const GAME_END = 'GAME_END';
 
 export const GAME_START = 'GAME_START';
 
-export const INPUT_PAUSE = 'INPUT_PAUSE';
+export const HALT_INPUT = 'HALT_INPUT';
+
+export const ALLOW_INPUT = 'ALLOW_INPUT';
 
 export const BUTTON_PRESS = 'BUTTON_PRESS';
 
