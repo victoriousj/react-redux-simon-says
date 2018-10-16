@@ -13,7 +13,7 @@ class Container extends Component {
   static propTypes = {
     score: PropTypes.string.isRequired,
     isPlaying: PropTypes.bool.isRequired,
-    highScore: PropTypes.string.isRequired,
+    hScore: PropTypes.string.isRequired,
     colorScheme: PropTypes.number.isRequired,
     buttonColors: PropTypes.array.isRequired,
     playbackSequence: PropTypes.array.isRequired,
@@ -36,7 +36,9 @@ class Container extends Component {
 
   componentDidUpdate(prevState) {
     if (this.props.playbackSequence.length !== prevState.playbackSequence.length) {
-      this.showPlaybackSequence();
+      setTimeout(() => {
+        this.showPlaybackSequence();
+      }, 500);
     }
   }
 
@@ -48,13 +50,12 @@ class Container extends Component {
     
     async function animatePlaybackSequence() {
       for (let i = 0; i < playbackSequence.length; i++) {
-        console.log(playbackSequence[i]);
         refs[playbackSequence[i]].buttonPress();
         await delay(500);
       }
     };
 
-    animatePlaybackSequence().then(this.inputPause);
+    animatePlaybackSequence().then(this.inputPause());
   }
 
   render() {
@@ -77,9 +78,8 @@ class Container extends Component {
 const mapStateToProps = state => (
   {
     score: state.score,
-    sounds: state.sounds,
+    hScore: state.hScore,
     isPlaying: state.isPlaying,
-    highScore: state.highScore,
     inputPause: state.inputPause,
     colorScheme: state.colorScheme,
     buttonColors: state.buttonColors,

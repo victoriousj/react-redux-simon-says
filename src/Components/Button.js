@@ -18,6 +18,7 @@ export default class Button extends Component {
         this.state = { show: false };
         
         this.buttonPress = this.buttonPress.bind(this);
+        this.registerButtonPress = this.registerButtonPress.bind(this);
     }
     
     buttonPress() {
@@ -28,6 +29,10 @@ export default class Button extends Component {
         soundEffect.play();
                     
         setTimeout(() => this.setState( { show: false } ), 150);
+    }
+
+    registerButtonPress() {
+        this.buttonPress();
 
         if (this.props.isPlaying && !this.props.inputPause) {
             this.props.buttonPress(this.props.index)
@@ -37,7 +42,7 @@ export default class Button extends Component {
     render() {
 
         return (
-            <div onClick={this.buttonPress} style={ {backgroundColor: this.props.color} } className="button">
+            <div onClick={this.registerButtonPress} style={ {backgroundColor: this.props.color} } className="button">
                 <div className={`button-overlay ${this.state.show ? "button-overlay-on" : ""} ${this.props.isPlaying ? "game-on" : ""}`} ></div>
             </div>
         );

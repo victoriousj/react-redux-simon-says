@@ -6,9 +6,9 @@ import { sounds } from '../resources';
 const initialState = {
     score: "000",
     
-    colorScheme: 0,
+    hScore: "000",
     
-    highScore: "000",
+    colorScheme: 0,
     
     isPlaying: false,
 
@@ -16,9 +16,7 @@ const initialState = {
     
     currentButton: null,
     
-    playbackSequence: [0, 0, 1, 0, 3, 2],
-    
-    sounds: Resources.sounds,
+    playbackSequence: [],
     
     playerPlaybackSequence: [],
 
@@ -42,17 +40,24 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.GAME_START: {
-            let playbackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+            let playbackSequence = [
+                ...state.playbackSequence, 
+                Helpers.fetchRandomButtonIndex()
+            ];
             
-            return !state.isPlaying 
-            ?   { ...state, isPlaying: true, playbackSequence, wrongEntry: false } 
-            :   Control(state, { type: ControlActionTypes.GAME_END });
+            if (state.isPlaying) {
+                return Control(state, { type: ControlActionTypes.GAME_END });
+            }
+
+            return { 
+                ...state, 
+                isPlaying: true, 
+                playbackSequence,
+            } 
         }
 
         case ControlActionTypes.INPUT_PAUSE: {
-            let toggledInputPause = !state.inputPause;
 
-            console.log('input pause:', toggledInputPause);
             return {
                 ...state,
                 inputPause: !state.inputPause,
@@ -60,8 +65,10 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.BUTTON_PRESS: {
-            let currentButton = action.buttonIndex;
-            let newPlayerPlaybackSequence = [...state.playerPlaybackSequence, currentButton];
+            let newPlayerPlaybackSequence = [
+                ...state.playerPlaybackSequence, 
+                action.buttonIndex
+            ];
 
             // Start at the end of the array and work back
             for (let i = newPlayerPlaybackSequence.length; i--;) {
@@ -84,7 +91,10 @@ export default function Control(state=initialState, action) {
         }
 
         case ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE: {
-            let newPlaybackSequence = [...state.playbackSequence, Helpers.fetchRandomButtonIndex()];
+            let newPlaybackSequence = [
+                ...state.playbackSequence, 
+                Helpers.fetchRandomButtonIndex()
+            ];
 
             return {
                 ...state,
