@@ -20,6 +20,7 @@
 
 body {
 	background-color: #34495e;
+	overflow: hidden;
 }
 
 .container {
@@ -36,11 +37,19 @@ body {
 	padding: 2vh;
 	overflow: hidden;
 	border-radius: 50%;
-	box-shadow: 
-		0 1.4vh 2.8vh rgba(0,0,0,0.25), 
-		0 1vh 1vh rgba(0,0,0,0.22),
-		inset 0 0.7vh 1.4vh rgba(0,0,0,0.25),
-		inset  0 0.5vh 0.5vh rgba(0,0,0,0.22);
+}
+
+.fade-appear {
+	opacity: 0.01;
+	transform: rotate(-360deg);
+}
+  
+.fade-appear.fade-appear-active {
+	opacity: 1;
+	transform: rotate(0deg);
+	transition: 
+		transform .7s ease-out,
+		opacity .7s ease-in;
 }
 
 .button {
@@ -78,7 +87,7 @@ body {
 
 
 .button:nth-of-type(1) {
-	border-radius: 100vh 2vh 0 2vh;
+	border-radius: 500% 0 0 0;
 	background-color: #e74c3c;
 	background-image: radial-gradient(
 		circle at bottom right,
@@ -100,7 +109,7 @@ body {
 }
 
 .button:nth-of-type(2) {
-	border-radius: 2vh 100vh 2vh 0;
+	border-radius: 0 500% 0 0;
 	background-color: #f1c40f;
 	background-image: radial-gradient(
 		circle at bottom left,
@@ -122,7 +131,7 @@ body {
 }
 
 .button:nth-of-type(3) {
-	border-radius: 2vh 0 2vh 100vh;
+	border-radius: 0 0 0 500%;
 	background-color: #2ecc71;
 	background-image: radial-gradient(
 		circle at top right,
@@ -144,7 +153,7 @@ body {
 }
 
 .button:nth-of-type(4) {
-	border-radius: 0 2vh 100vh 2vh;
+	border-radius: 0 0 500% 0;
 	background-color: #9b59b6;
 	background-image: radial-gradient(
 		circle at top left,

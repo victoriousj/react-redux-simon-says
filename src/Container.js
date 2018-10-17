@@ -1,3 +1,4 @@
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { bindActionCreators } from 'redux';
 import React, { Component } from 'react';
 import { connect  } from 'react-redux';
@@ -36,6 +37,10 @@ class Container extends Component {
     this.showPlaybackSequence = this.showPlaybackSequence.bind(this);
   }
 
+  componentDidMount() {
+    console.log('loaded');
+  }
+
   componentDidUpdate(prevState) {
     if (this.props.playbackSequence.length !== prevState.playbackSequence.length && this.props.isPlaying === true) {
       setTimeout(() => { this.showPlaybackSequence() }, 1000);
@@ -44,7 +49,6 @@ class Container extends Component {
 
   showPlaybackSequence() {  
     (async () => {
-      this.haltInput();
       for (let i = 0; i < this.props.playbackSequence.length;) {
         this.refs[this.props.playbackSequence[i++]].buttonPress();
         await delay(500);
@@ -58,13 +62,14 @@ class Container extends Component {
       <Button key={index} ref={index} index={index} color={buttonColor} isPlaying={this.props.isPlaying} inputPause={this.props.inputPause} buttonPress={this.buttonPress} />
     );
 
-
     return (
       <div className="App">
+      <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionLeaveTimeout={0} transitionEnterTimeout={0} transitionAppearTimeout={700}>
         <div className="container">
           {buttonComponents}
           <Controls score={this.props.score} startGame={this.startGame} isPlaying={this.props.isPlaying} changeColorScheme={this.changeColorScheme} />
         </div>
+        </ReactCSSTransitionGroup>
       </div>
     );
   };
