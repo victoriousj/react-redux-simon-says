@@ -37,10 +37,6 @@ class Container extends Component {
     this.showPlaybackSequence = this.showPlaybackSequence.bind(this);
   }
 
-  componentDidMount() {
-    console.log('loaded');
-  }
-
   componentDidUpdate(prevState) {
     if (this.props.playbackSequence.length !== prevState.playbackSequence.length && this.props.isPlaying === true) {
       setTimeout(() => { this.showPlaybackSequence() }, 1000);
@@ -64,11 +60,11 @@ class Container extends Component {
 
     return (
       <div className="App">
-      <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionLeaveTimeout={0} transitionEnterTimeout={0} transitionAppearTimeout={700}>
-        <div className="container">
-          {buttonComponents}
-          <Controls score={this.props.score} startGame={this.startGame} isPlaying={this.props.isPlaying} changeColorScheme={this.changeColorScheme} />
-        </div>
+        <ReactCSSTransitionGroup transitionName="fade" transitionAppear={true} transitionLeaveTimeout={0} transitionEnterTimeout={0} transitionAppearTimeout={700}>
+          <div className="container">
+            {buttonComponents}
+            <Controls score={this.props.score} startGame={this.startGame} isPlaying={this.props.isPlaying} changeColorScheme={this.changeColorScheme} />
+          </div>
         </ReactCSSTransitionGroup>
       </div>
     );
