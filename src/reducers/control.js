@@ -97,8 +97,8 @@ export default function Control(state=initialState, action) {
             }
 
             let soundEffect = new Audio(Resources.sounds[5]);
-            soundEffect.volume = 0.3;
-            setTimeout(() => { soundEffect.play() }, 300);
+            soundEffect.volume = 0.6;
+            setTimeout(() => { soundEffect.play() }, 200);
 
             state = Helpers.parseScore(state);
 

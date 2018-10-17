@@ -51,6 +51,9 @@ body {
 	display: inline-block;
 	overflow: hidden;
 }
+.button.button-shrink {
+	transform: scale(0.99);
+}
 
 .button:hover .game-on {
 	cursor: pointer;
@@ -223,6 +226,7 @@ body {
 	position: absolute;
 	left: 25%;
 	top: 55%;
+	cursor: pointer;
 }
 
 .game-name {

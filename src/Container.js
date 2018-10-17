@@ -42,20 +42,15 @@ class Container extends Component {
     }
   }
 
-  showPlaybackSequence() {
-    const playbackSequence = this.props.playbackSequence;
-    const refs = this.refs;
-  
-    const animatePlaybackSequence = async () => {
+  showPlaybackSequence() {  
+    (async () => {
       this.haltInput();
-      for (let i = 0; i < playbackSequence.length;) {
-        refs[playbackSequence[i++]].buttonPress();
+      for (let i = 0; i < this.props.playbackSequence.length;) {
+        this.refs[this.props.playbackSequence[i++]].buttonPress();
         await delay(500);
       }
       await this.allowInput();
-    };
-
-    animatePlaybackSequence();
+    })();
   }
 
   render() {

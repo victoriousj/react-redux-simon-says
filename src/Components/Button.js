@@ -36,13 +36,12 @@ export default class Button extends Component {
             this.buttonPress();
             this.props.buttonPress(this.props.index)
         }
-
     }
 
     render() {
 
         return (
-            <div onClick={this.registerButtonPress} style={ {backgroundColor: this.props.color} } className="button">
+            <div onClick={this.registerButtonPress} style={ {backgroundColor: this.props.color} } className={`button ${this.state.show ? 'button-shrink' : ''}`}>
                 <div className={`button-overlay ${this.state.show ? "button-overlay-on" : ""} ${this.props.isPlaying ? "game-on" : ""}`} ></div>
             </div>
         );
