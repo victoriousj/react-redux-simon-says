@@ -14,14 +14,9 @@ module.exports = {
         use:['style-loader','css-loader']
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|svg|ttf|woff|woff2|mp3|flac)$/,
         loader: 'file-loader'
-    },
-    {
-        test: /\.(mp3|flac)$/,
-        // include: SRC,
-        loader: 'file-loader'
-    }
+      },
     ]
   }
 };

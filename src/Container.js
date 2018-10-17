@@ -44,11 +44,14 @@ class Container extends Component {
   }
 
   showPlaybackSequence() {  
-    (async () => {
-      for (let i = 0; i < this.props.playbackSequence.length;) {
-        this.refs[this.props.playbackSequence[i++]].buttonPress();
-        await delay(500);
+    (async() => {
+      this.haltInput();
+
+      for (let i = 0; i < this.props.playbackSequence.length; await delay(500)) {
+        let currentButton = this.refs[this.props.playbackSequence[i++]];
+        currentButton.buttonPress();
       }
+
       await this.allowInput();
     })();
   }

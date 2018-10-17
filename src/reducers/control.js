@@ -101,7 +101,6 @@ export default function Control(state=initialState, action) {
             setTimeout(() => { soundEffect.play() }, 200);
 
             state = Helpers.parseScore(state);
-            state = Control(state, { type: ControlActionTypes.HALT_INPUT });
             
             return Control(state, { type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE })
         }
