@@ -43,10 +43,9 @@ class Container extends Component {
   }
 
   showPlaybackSequence() {
-    let playbackSequence = this.props.playbackSequence;
-    let refs = this.refs;
-
-    
+    const playbackSequence = this.props.playbackSequence;
+    const refs = this.refs;
+  
     const animatePlaybackSequence = async () => {
       this.haltInput();
       for (let i = 0; i < playbackSequence.length;) {
