@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import ControlReducer from './reducers/control';
 
 import './App.css';
+// import '../public/favicon.ico'
+// import '../public/manifest.json';
 
 const store = createStore(
     ControlReducer,
