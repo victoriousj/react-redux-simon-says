@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import Score from './Score';
@@ -16,5 +17,12 @@ const Controls = props => (
         </div>
     </div>
 );
+
+Controls.protoTypes = {
+    score: PropTypes.string.isRequired,
+    isPlaying: PropTypes.bool.isRequired,
+    startGame: PropTypes.func.isRequired,
+    changeColorScheme: PropTypes.number.isRequired
+}
 
 export default Controls;

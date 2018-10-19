@@ -3,35 +3,22 @@ export const fetchRandomButtonIndex = () =>
 
 export const getNextColorScheme = state => 
     ++state.colorScheme !== state.buttonColors.length 
-    ? state.colorScheme 
-    : 0;
+    ? state.colorScheme : 0;
 
-export const compareArrays = (arr1, arr2) => 
-    arr1.length === arr2.length && 
-    arr1.every((value, index) => 
-        value === arr2[index]);
-
-export const delay = (amount) => {
-    return new Promise(resolve => {
-      setTimeout(resolve, amount);
-    })
-};
+export const delay = x => 
+    new Promise(r => setTimeout(r, x));
 
 export const parseScore = state => {
     let s = parseInt(state.score);
     let hs = parseInt(state.highScore);
 
-    let parsedScore = ++s < 10 
-        ? "00" + s
-        : s < 99 
-            ? "0" + s
-            : s.toString();
+    const parsedScore = ++s < 10 
+        ? "00" + s : s < 99 ? "0" + s : s;
 
-    let parsedHighScore = s > hs 
-        ? parsedScore 
-        : state.highScore;
+    const parsedHighScore = s > hs 
+        ? parsedScore : state.highScore;
     
-    let newState = {
+    const newState = {
         ...state,
         score: parsedScore,
         highScore: parsedHighScore,

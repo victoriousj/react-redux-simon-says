@@ -1,9 +1,9 @@
 {
-  "main.css": "/static/css/main.57b92b3a.chunk.css",
-  "main.js": "/static/js/main.d68005b8.chunk.js",
-  "main.js.map": "/static/js/main.d68005b8.chunk.js.map",
-  "static/js/1.fefb664a.chunk.js": "/static/js/1.fefb664a.chunk.js",
-  "static/js/1.fefb664a.chunk.js.map": "/static/js/1.fefb664a.chunk.js.map",
+  "main.css": "/static/css/main.3af668f0.chunk.css",
+  "main.js": "/static/js/main.b9bd91ec.chunk.js",
+  "main.js.map": "/static/js/main.b9bd91ec.chunk.js.map",
+  "static/js/1.ef047109.chunk.js": "/static/js/1.ef047109.chunk.js",
+  "static/js/1.ef047109.chunk.js.map": "/static/js/1.ef047109.chunk.js.map",
   "runtime~main.js": "/static/js/runtime~main.229c360f.js",
   "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
   "static/media/simonSound1.mp3": "/static/media/simonSound1.319c7710.mp3",
@@ -13,8 +13,8 @@
   "static/media/success.flac": "/static/media/success.0d0e62da.flac",
   "static/media/App.css": "/static/media/LilitaOne-Regular.0d4e1383.ttf",
   "static/media/simonSound2.mp3": "/static/media/simonSound2.c3c86e71.mp3",
-  "static/css/main.57b92b3a.chunk.css.map": "/static/css/main.57b92b3a.chunk.css.map",
+  "static/css/main.3af668f0.chunk.css.map": "/static/css/main.3af668f0.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.cf61802c07007addd0531207285629c6.js": "/precache-manifest.cf61802c07007addd0531207285629c6.js",
+  "precache-manifest.0ea5a4b293406b8971f513d7c14a219f.js": "/precache-manifest.0ea5a4b293406b8971f513d7c14a219f.js",
   "service-worker.js": "/service-worker.js"
 }
