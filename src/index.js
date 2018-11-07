@@ -12,14 +12,14 @@ import './App.css';
 // import '../public/manifest.json';
 
 const store = createStore(
-    ControlReducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  ControlReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 ReactDOM.render(
-    <Provider store={store}>
-        <Container /> 
-    </Provider>,
+  <Provider store={store}>
+    <Container />
+  </Provider>,
 
-    document.getElementById('root')
+  document.getElementById('root')
 );
