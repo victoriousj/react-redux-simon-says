@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { CSSTransition, transit } from 'react-css-transition';
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+import { CSSTransition, transit } from "react-css-transition";
 
 CSSTransition.childContextTypes = {};
 const transitionStyles = {
-  enterStyle: { transform: transit('translate(52.5%)', 100, 'ease-in-out') },
-  leaveStyle: { transform: transit('translate(0)', 100, 'ease-in-out') },
-  activeStyle: { transform: 'translate(52.5%)' }
+  enterStyle: { transform: transit("translate(52.5%)", 100, "ease-in-out") },
+  leaveStyle: { transform: transit("translate(0)", 100, "ease-in-out") },
+  activeStyle: { transform: "translate(52.5%)" }
 };
 
 export default class ControlButtons extends Component {
@@ -21,7 +21,7 @@ export default class ControlButtons extends Component {
       <div className="control-buttons">
         <div
           className={`game-light ${
-            this.props.isPlaying ? 'game-light-on' : ''
+            this.props.isPlaying ? "game-light-on" : ""
           }`}
         />
         <div onClick={() => this.props.startGame()} className="game-switch">
@@ -32,7 +32,7 @@ export default class ControlButtons extends Component {
         <div
           onClick={() => this.props.changeColorScheme()}
           className={`game-reset ${
-            !this.props.isPlaying ? 'game-light-off' : ''
+            !this.props.isPlaying ? "game-light-off" : ""
           }`}
         />
       </div>

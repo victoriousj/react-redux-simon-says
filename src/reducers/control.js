@@ -1,11 +1,11 @@
-import * as ControlActionTypes from '../actiontypes/control';
-import * as Helpers from '../helpers/helpers';
-import * as Resources from '../resources';
+import * as ControlActionTypes from "../actiontypes/control";
+import * as Helpers from "../helpers/helpers";
+import * as Resources from "../resources";
 
 const initialState = {
-  score: '000',
+  score: "000",
 
-  hScore: '000',
+  hScore: "000",
 
   colorScheme: 0,
 
@@ -27,7 +27,7 @@ export default function Control(state = initialState, action) {
     case ControlActionTypes.GAME_END: {
       return {
         ...state,
-        score: '000',
+        score: "000",
         isPlaying: false,
         currentButton: null,
         playbackSequence: [],

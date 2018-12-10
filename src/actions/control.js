@@ -1,4 +1,4 @@
-import * as ControlActionTypes from '../actiontypes/control';
+import * as ControlActionTypes from "../actiontypes/control";
 
 export const endGame = () => ({ type: ControlActionTypes.GAME_END });
 

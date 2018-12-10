@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import { sounds } from '../resources';
+import { sounds } from "../resources";
 
 export default class Button extends Component {
   static propTypes = {
@@ -44,13 +44,13 @@ export default class Button extends Component {
         onClick={this.registerButtonPress}
         style={{ backgroundColor: this.props.color }}
         className={`button ${
-          this.state.show && !this.props.inputPause ? 'button-shrink' : ''
+          this.state.show && !this.props.inputPause ? "button-shrink" : ""
         }`}
       >
         <div
           className={`button-overlay ${
-            this.state.show ? 'button-overlay-on' : ''
-          } ${this.props.isPlaying ? 'game-on' : ''}`}
+            this.state.show ? "button-overlay-on" : ""
+          } ${this.props.isPlaying ? "game-on" : ""}`}
         />
       </div>
     );

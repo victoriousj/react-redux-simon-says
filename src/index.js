@@ -1,15 +1,13 @@
-import 'babel-polyfill';
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Container from './Container';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+import "babel-polyfill";
+import React from "react";
+import ReactDOM from "react-dom";
+import Container from "./Container";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
 
-import ControlReducer from './reducers/control';
+import ControlReducer from "./reducers/control";
 
-import './App.css';
-// import '../public/favicon.ico'
-// import '../public/manifest.json';
+import "./App.css";
 
 const store = createStore(
   ControlReducer,
@@ -21,5 +19,5 @@ ReactDOM.render(
     <Container />
   </Provider>,
 
-  document.getElementById('root')
+  document.getElementById("root")
 );

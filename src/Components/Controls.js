@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import Score from './Score';
-import ControlButtons from './ControlButtons';
+import Score from "./Score";
+import ControlButtons from "./ControlButtons";
 
 const Controls = props => (
   <div className="controls">

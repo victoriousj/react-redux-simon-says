@@ -1,13 +1,13 @@
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import { bindActionCreators } from 'redux';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import ReactCSSTransitionGroup from "react-addons-css-transition-group";
+import { bindActionCreators } from "redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-import Button from './components/Button';
-import { delay } from './helpers/helpers';
-import Controls from './components/Controls';
-import * as ControlActionCreators from './actions/control';
+import Button from "./components/Button";
+import { delay } from "./helpers/helpers";
+import Controls from "./components/Controls";
+import * as ControlActionCreators from "./actions/control";
 
 class Container extends Component {
   static propTypes = {
