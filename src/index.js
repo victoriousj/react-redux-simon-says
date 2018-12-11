@@ -5,14 +5,11 @@ import Container from "./Container";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 
-import ControlReducer from "./reducers/control";
+import reducer from "./reducers/control";
 
 import "./App.css";
 
-const store = createStore(
-  ControlReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const store = createStore(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

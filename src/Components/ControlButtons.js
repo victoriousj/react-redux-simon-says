@@ -17,13 +17,13 @@ export default class ControlButtons extends Component {
   };
 
   render() {
+    const gameLightStyle = `game-light ${
+      this.props.isPlaying ? "game-light-on" : ""
+    }`;
+
     return (
       <div className="control-buttons">
-        <div
-          className={`game-light ${
-            this.props.isPlaying ? "game-light-on" : ""
-          }`}
-        />
+        <div className={gameLightStyle} />
         <div onClick={() => this.props.startGame()} className="game-switch">
           <CSSTransition {...transitionStyles} active={this.props.isPlaying}>
             <div className="game-switch-toggle" />

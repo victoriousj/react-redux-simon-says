@@ -1,23 +1,23 @@
-import * as ControlActionTypes from "../actiontypes/control";
+import * as actionTypes from "../actiontypes/control";
 
-export const endGame = () => ({ type: ControlActionTypes.GAME_END });
+export const endGame = () => ({ type: actionTypes.GAME_END });
 
-export const startGame = () => ({ type: ControlActionTypes.GAME_START });
+export const startGame = () => ({ type: actionTypes.GAME_START });
 
-export const haltInput = () => ({ type: ControlActionTypes.HALT_INPUT });
+export const haltInput = () => ({ type: actionTypes.HALT_INPUT });
 
-export const allowInput = () => ({ type: ControlActionTypes.ALLOW_INPUT });
+export const allowInput = () => ({ type: actionTypes.ALLOW_INPUT });
 
 export const addToPlaybackSequence = () => ({
-  type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE
+  type: actionTypes.ADD_TO_PLAYBACK_SEQUENCE
 });
 
 export const buttonPress = buttonIndex => ({
-  type: ControlActionTypes.BUTTON_PRESS,
+  type: actionTypes.BUTTON_PRESS,
   buttonIndex
 });
 
 export const changeColorScheme = colorSchemeId => ({
-  type: ControlActionTypes.GAME_CHANGE_COLOR_SCHEME,
+  type: actionTypes.GAME_CHANGE_COLOR_SCHEME,
   colorSchemeId
 });

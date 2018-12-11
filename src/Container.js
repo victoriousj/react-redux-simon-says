@@ -1,13 +1,12 @@
-import ReactCSSTransitionGroup from "react-addons-css-transition-group";
 import { bindActionCreators } from "redux";
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 import Button from "./components/Button";
-import { delay } from "./helpers/helpers";
+import { delay } from "./helpers";
 import Controls from "./components/Controls";
-import * as ControlActionCreators from "./actions/control";
+import * as actionCreators from "./actions/control";
 
 class Container extends Component {
   static propTypes = {
@@ -26,40 +25,24 @@ class Container extends Component {
 
     const { dispatch } = props;
 
-    this.endGame = bindActionCreators(ControlActionCreators.endGame, dispatch);
-    this.startGame = bindActionCreators(
-      ControlActionCreators.startGame,
-      dispatch
-    );
-    this.haltInput = bindActionCreators(
-      ControlActionCreators.haltInput,
-      dispatch
-    );
-    this.allowInput = bindActionCreators(
-      ControlActionCreators.allowInput,
-      dispatch
-    );
-    this.buttonPress = bindActionCreators(
-      ControlActionCreators.buttonPress,
-      dispatch
-    );
+    this.endGame = bindActionCreators(actionCreators.endGame, dispatch);
+    this.startGame = bindActionCreators(actionCreators.startGame, dispatch);
+    this.haltInput = bindActionCreators(actionCreators.haltInput, dispatch);
+    this.allowInput = bindActionCreators(actionCreators.allowInput, dispatch);
+    this.buttonPress = bindActionCreators(actionCreators.buttonPress, dispatch);
     this.changeColorScheme = bindActionCreators(
-      ControlActionCreators.changeColorScheme,
+      actionCreators.changeColorScheme,
       dispatch
     );
     this.addToPlaybackSequence = bindActionCreators(
-      ControlActionCreators.addToPlaybackSequence,
+      actionCreators.addToPlaybackSequence,
       dispatch
     );
-
-    this.showPlaybackSequence = this.showPlaybackSequence.bind(this);
   }
 
   componentDidUpdate(prevState) {
     if (
-      this.props.playbackSequence.length !==
-        prevState.playbackSequence.length &&
-      this.props.isPlaying === true
+      this.props.playbackSequence.length !== prevState.playbackSequence.length
     ) {
       setTimeout(() => {
         this.showPlaybackSequence();
@@ -67,57 +50,49 @@ class Container extends Component {
     }
   }
 
-  showPlaybackSequence() {
+  showPlaybackSequence = () => {
+    const { props } = this;
     (async () => {
       this.haltInput();
 
-      for (
-        let i = 0;
-        i < this.props.playbackSequence.length;
-        await delay(500)
-      ) {
-        let currentButton = this.refs[this.props.playbackSequence[i++]];
+      for (let i = 0; i < props.playbackSequence.length; await delay(500)) {
+        let currentButton = this.refs[props.playbackSequence[i++]];
         currentButton.buttonPress();
       }
 
       await this.allowInput();
     })();
-  }
+  };
 
   render() {
-    const buttonComponents = this.props.buttonColors[
-      this.props.colorScheme
-    ].map((buttonColor, index) => (
-      <Button
-        key={index}
-        ref={index}
-        index={index}
-        color={buttonColor}
-        isPlaying={this.props.isPlaying}
-        inputPause={this.props.inputPause}
-        buttonPress={this.buttonPress}
-      />
-    ));
+    const { props } = this;
+    const { colorScheme, isPlaying, inputPause, buttonColors, score } = props;
+
+    const buttonComponents = buttonColors[colorScheme].map(
+      (buttonColor, index) => (
+        <Button
+          key={index}
+          ref={index}
+          index={index}
+          color={buttonColor}
+          isPlaying={isPlaying}
+          inputPause={inputPause}
+          buttonPress={this.buttonPress}
+        />
+      )
+    );
 
     return (
       <div className="App">
-        <ReactCSSTransitionGroup
-          transitionName="fade"
-          transitionAppear={true}
-          transitionLeaveTimeout={0}
-          transitionEnterTimeout={0}
-          transitionAppearTimeout={700}
-        >
-          <div className="container">
-            {buttonComponents}
-            <Controls
-              score={this.props.score}
-              startGame={this.startGame}
-              isPlaying={this.props.isPlaying}
-              changeColorScheme={this.changeColorScheme}
-            />
-          </div>
-        </ReactCSSTransitionGroup>
+        <div className="container">
+          {buttonComponents}
+          <Controls
+            score={score}
+            isPlaying={isPlaying}
+            startGame={this.startGame}
+            changeColorScheme={this.changeColorScheme}
+          />
+        </div>
       </div>
     );
   }

@@ -14,44 +14,45 @@ export default class Button extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = { show: false };
-
-    this.buttonPress = this.buttonPress.bind(this);
-    this.registerButtonPress = this.registerButtonPress.bind(this);
   }
 
-  buttonPress() {
-    this.setState({ show: true });
-
-    let soundEffect = new Audio(sounds[this.props.index]);
-    soundEffect.currentTime = 0.125;
-    soundEffect.play();
-
-    setTimeout(() => this.setState({ show: false }), 150);
-  }
-
-  registerButtonPress() {
+  registerButtonPress = () => {
     if (!this.props.inputPause && this.props.isPlaying) {
       this.buttonPress();
       this.props.buttonPress(this.props.index);
     }
-  }
+  };
+
+  buttonPress = () => {
+    this.setState({ show: true });
+
+    const soundEffect = new Audio();
+    soundEffect.src = sounds[this.props.index];
+    soundEffect.currentTime = 0.125;
+    soundEffect.play();
+
+    setTimeout(() => this.setState({ show: false }), 150);
+  };
 
   render() {
+    const { props, state } = this;
+    const { color, inputPause, isPlaying } = props;
+
+    const buttonStyle = `button ${
+      state.show && !inputPause ? "button-shrink" : ""
+    }`;
+    const buttonOverlayStyle = `button-overlay ${
+      state.show ? "button-overlay-on" : ""
+    } ${isPlaying ? "game-on" : ""}`;
+
     return (
       <div
+        className={buttonStyle}
         onClick={this.registerButtonPress}
-        style={{ backgroundColor: this.props.color }}
-        className={`button ${
-          this.state.show && !this.props.inputPause ? "button-shrink" : ""
-        }`}
+        style={{ backgroundColor: color }}
       >
-        <div
-          className={`button-overlay ${
-            this.state.show ? "button-overlay-on" : ""
-          } ${this.props.isPlaying ? "game-on" : ""}`}
-        />
+        <div className={buttonOverlayStyle} />
       </div>
     );
   }

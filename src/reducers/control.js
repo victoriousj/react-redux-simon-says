@@ -1,25 +1,21 @@
 import * as ControlActionTypes from "../actiontypes/control";
-import * as Helpers from "../helpers/helpers";
-import * as Resources from "../resources";
+import { sounds, colorSchemes } from "../resources";
+import {
+  parseScore,
+  getNextColorScheme,
+  fetchRandomButtonIndex
+} from "../helpers";
 
 const initialState = {
   score: "000",
-
   hScore: "000",
-
   colorScheme: 0,
-
   isPlaying: false,
-
   inputPause: false,
-
   currentButton: null,
-
   playbackSequence: [],
-
   playerPlaybackSequence: [],
-
-  buttonColors: Resources.colorSchemes
+  buttonColors: colorSchemes
 };
 
 export default function Control(state = initialState, action) {
@@ -36,9 +32,9 @@ export default function Control(state = initialState, action) {
     }
 
     case ControlActionTypes.GAME_START: {
-      let playbackSequence = [
+      const playbackSequence = [
         ...state.playbackSequence,
-        Helpers.fetchRandomButtonIndex()
+        fetchRandomButtonIndex()
       ];
 
       if (state.isPlaying) {
@@ -67,7 +63,7 @@ export default function Control(state = initialState, action) {
     }
 
     case ControlActionTypes.BUTTON_PRESS: {
-      let newPlayerPlaybackSequence = [
+      const newPlayerPlaybackSequence = [
         ...state.playerPlaybackSequence,
         action.buttonIndex
       ];
@@ -75,7 +71,8 @@ export default function Control(state = initialState, action) {
       // Start at the end of the array and work back
       for (let i = newPlayerPlaybackSequence.length; i--; ) {
         if (state.playbackSequence[i] !== newPlayerPlaybackSequence[i]) {
-          let soundEffect = new Audio(Resources.sounds[4]);
+          const soundEffect = new Audio();
+          soundEffect.src = sounds[4];
           soundEffect.volume = 0.07;
           soundEffect.play();
 
@@ -90,13 +87,12 @@ export default function Control(state = initialState, action) {
         };
       }
 
-      let soundEffect = new Audio(Resources.sounds[5]);
+      const soundEffect = new Audio();
       soundEffect.volume = 0.6;
-      setTimeout(() => {
-        soundEffect.play();
-      }, 200);
+      soundEffect.src = sounds[5];
+      setTimeout(() => soundEffect.play(), 200);
 
-      state = Helpers.parseScore(state);
+      state = parseScore(state);
 
       return Control(state, {
         type: ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE
@@ -104,9 +100,9 @@ export default function Control(state = initialState, action) {
     }
 
     case ControlActionTypes.ADD_TO_PLAYBACK_SEQUENCE: {
-      let newPlaybackSequence = [
+      const newPlaybackSequence = [
         ...state.playbackSequence,
-        Helpers.fetchRandomButtonIndex()
+        fetchRandomButtonIndex()
       ];
 
       return {
@@ -117,11 +113,9 @@ export default function Control(state = initialState, action) {
     }
 
     case ControlActionTypes.GAME_CHANGE_COLOR_SCHEME: {
-      let nextColorScheme = Helpers.getNextColorScheme(state);
-
       return {
         ...state,
-        colorScheme: nextColorScheme
+        colorScheme: getNextColorScheme(state)
       };
     }
 
