@@ -1,5 +1,5 @@
+import React from "react";
 import PropTypes from "prop-types";
-import React, { Component } from "react";
 import { CSSTransition, transit } from "react-css-transition";
 
 CSSTransition.childContextTypes = {};
@@ -9,33 +9,25 @@ const transitionStyles = {
   activeStyle: { transform: "translate(52.5%)" }
 };
 
-export default class ControlButtons extends Component {
-  static propTypes = {
-    isPlaying: PropTypes.bool.isRequired,
-    startGame: PropTypes.func.isRequired,
-    changeColorScheme: PropTypes.func.isRequired
-  };
+const ControlButtons = props => (
+  <div className="control-buttons">
+    <div className={`game-light ${props.isPlaying ? "game-light-on" : ""}`} />
+    <div onClick={() => props.startGame()} className="game-switch">
+      <CSSTransition {...transitionStyles} active={props.isPlaying}>
+        <div className="game-switch-toggle" />
+      </CSSTransition>
+    </div>
+    <div
+      onClick={() => props.changeColorScheme()}
+      className={`game-reset ${!props.isPlaying ? "game-light-off" : ""}`}
+    />
+  </div>
+);
 
-  render() {
-    const gameLightStyle = `game-light ${
-      this.props.isPlaying ? "game-light-on" : ""
-    }`;
+ControlButtons.propTypes = {
+  isPlaying: PropTypes.bool.isRequired,
+  startGame: PropTypes.func.isRequired,
+  changeColorScheme: PropTypes.func.isRequired
+};
 
-    return (
-      <div className="control-buttons">
-        <div className={gameLightStyle} />
-        <div onClick={() => this.props.startGame()} className="game-switch">
-          <CSSTransition {...transitionStyles} active={this.props.isPlaying}>
-            <div className="game-switch-toggle" />
-          </CSSTransition>
-        </div>
-        <div
-          onClick={() => this.props.changeColorScheme()}
-          className={`game-reset ${
-            !this.props.isPlaying ? "game-light-off" : ""
-          }`}
-        />
-      </div>
-    );
-  }
-}
+export default ControlButtons;

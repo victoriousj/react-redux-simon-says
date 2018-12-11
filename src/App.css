@@ -72,23 +72,23 @@ code {
   display: inline-block;
   overflow: hidden;
 }
-.button.button-shrink {
+.button.shrink {
   transform: scale(0.95);
   transition: transform 1s ease;
 }
 
-.button:hover .game-on {
+.button:hover .on {
   cursor: pointer;
 }
 
-.button-overlay {
+.overlay {
   width: 100%;
   height: 100%;
   opacity: 0;
   transition: opacity 0.15s;
 }
 
-.button-overlay.button-overlay-on {
+.overlay.on {
   background-image: radial-gradient(
     circle,
     rgba(255, 255, 255, 0.4) 1%,

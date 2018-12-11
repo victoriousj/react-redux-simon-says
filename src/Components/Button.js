@@ -18,9 +18,10 @@ export default class Button extends Component {
   }
 
   registerButtonPress = () => {
-    if (!this.props.inputPause && this.props.isPlaying) {
+    const { props } = this;
+    if (!props.inputPause && props.isPlaying) {
       this.buttonPress();
-      this.props.buttonPress(this.props.index);
+      props.buttonPress(props.index);
     }
   };
 
@@ -37,14 +38,11 @@ export default class Button extends Component {
 
   render() {
     const { props, state } = this;
-    const { color, inputPause, isPlaying } = props;
+    const { color, inputPause } = props;
+    const { show } = state;
 
-    const buttonStyle = `button ${
-      state.show && !inputPause ? "button-shrink" : ""
-    }`;
-    const buttonOverlayStyle = `button-overlay ${
-      state.show ? "button-overlay-on" : ""
-    } ${isPlaying ? "game-on" : ""}`;
+    const buttonStyle = `button ${show && !inputPause ? "shrink" : ""}`;
+    const overlayStyle = `overlay ${show ? "on" : ""}`;
 
     return (
       <div
@@ -52,7 +50,7 @@ export default class Button extends Component {
         onClick={this.registerButtonPress}
         style={{ backgroundColor: color }}
       >
-        <div className={buttonOverlayStyle} />
+        <div className={overlayStyle} />
       </div>
     );
   }

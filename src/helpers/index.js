@@ -1,9 +1,9 @@
 export const fetchRandomButtonIndex = () => Math.floor(Math.random() * 4);
 
+export const delay = x => new Promise(r => setTimeout(r, x));
+
 export const getNextColorScheme = state =>
   state.buttonColors.length !== ++state.colorScheme ? state.colorScheme : 0;
-
-export const delay = x => new Promise(r => setTimeout(r, x));
 
 export const parseScore = state => {
   let s = parseInt(state.score);
