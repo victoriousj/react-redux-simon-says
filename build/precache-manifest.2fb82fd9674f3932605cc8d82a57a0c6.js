@@ -4,8 +4,8 @@ self.__precacheManifest = [
     "url": "/simon-says-react-redux/static/media/simonSound3.f3c18b98.mp3"
   },
   {
-    "revision": "8f99755b846169497c66",
-    "url": "/simon-says-react-redux/static/css/main.343b404e.chunk.css"
+    "revision": "78cf2e01aa5839209519",
+    "url": "/simon-says-react-redux/static/css/main.7bec303c.chunk.css"
   },
   {
     "revision": "7f2d5555c27346feaf9b",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/simon-says-react-redux/static/media/simonSound2.c3c86e71.mp3"
   },
   {
-    "revision": "8f99755b846169497c66",
-    "url": "/simon-says-react-redux/static/js/main.8f99755b.chunk.js"
+    "revision": "78cf2e01aa5839209519",
+    "url": "/simon-says-react-redux/static/js/main.78cf2e01.chunk.js"
   },
   {
     "revision": "f4a912ee52e2c884a80499208c5568cc",
@@ -40,15 +40,15 @@ self.__precacheManifest = [
     "url": "/simon-says-react-redux/static/media/success.0d0e62da.flac"
   },
   {
-    "revision": "55ebeeb7e8e06a1c5bd55674d98d406b",
-    "url": "/simon-says-react-redux/static/media/digital-subset.55ebeeb7.ttf"
-  },
-  {
     "revision": "0d4e1383accd17a50bcc7d69f5ac7582",
     "url": "/simon-says-react-redux/static/media/LilitaOne-Regular.0d4e1383.ttf"
   },
   {
-    "revision": "e9a82331d1ae2b2297a2350e0d6fdb3b",
+    "revision": "55ebeeb7e8e06a1c5bd55674d98d406b",
+    "url": "/simon-says-react-redux/static/media/digital-subset.55ebeeb7.ttf"
+  },
+  {
+    "revision": "f3ca316f321a67b7e988fe4b8657379a",
     "url": "/simon-says-react-redux/index.html"
   }
 ];

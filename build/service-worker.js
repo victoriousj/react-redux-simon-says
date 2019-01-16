@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
 
 importScripts(
-  "/simon-says-react-redux/precache-manifest.46713f9ea3666454003e3b5d8cf88cd0.js"
+  "/simon-says-react-redux/precache-manifest.2fb82fd9674f3932605cc8d82a57a0c6.js"
 );
 
 workbox.clientsClaim();

@@ -1,1 +1,0 @@
-This repo is a 'for-fun' attempt at making Simon Says that will use React Components and store and handle the app's state using Redux.
