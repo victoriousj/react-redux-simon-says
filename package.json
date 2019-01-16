@@ -4,6 +4,7 @@
   "private": true,
   "main": "index.js",
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "react": "^16.5.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-css-transition": "^0.7.4",
@@ -12,7 +13,10 @@
     "react-scripts": "2.0.3",
     "redux": "^4.0.0"
   },
+  "homepage": "https://victoriousj.github.io/simon-says-react-redux",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
