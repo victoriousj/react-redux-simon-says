@@ -1,13 +1,13 @@
 # SIMON SAYS
-[Check it out!](https://victoriousj.github.io/simon-says-react-redux/)
+[Check it out!](https://victoriousj.github.io/react-redux-simon-says/)
 
-![React](./src/Assets/doc-photos/react.png?raw=true 'React')![Babel](./src/Assets/doc-photos/babel.png?raw=true 'Babel')![Webpack](./src/Assets/doc-photos/webpack.png?raw=true 'Webpack')![Prettier](./src/Assets/doc-photos/prettier.png?raw=true 'Prettier')![Styled-Component](./src/Assets/doc-photos/styled-components.png?raw=true 'Styled-Components')
+![React](./react.png?raw=true 'React')![Babel](./babel.png?raw=true 'Babel')![Webpack](./webpack.png?raw=true 'Webpack')
 
 A web-based rendition of Hasbro's classic game that we all grew up playing. Think your smart? Try to remember a sequence greater than five! Ten! The sky is the limit.
 
 ---
 
-![Screen Capture of Space Barrage](./src/Assets/doc-photos/screencapture.png?raw=true 'In-game screen capture')
+![Simon Says](./screencapture.png?raw=true 'In-game screen capture')
 
 ---
 
